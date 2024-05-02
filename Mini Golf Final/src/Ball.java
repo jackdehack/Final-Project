@@ -6,24 +6,16 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Ball {
+public class Ball extends CollisionObj{
+	private BufferedImage ballPic; //lol
+	private double mass;
 	private double xVector;
 	private double yVector;
-	private BufferedImage ballPic; //lol
 	private double radius;
-	private double x;
-	private double y;
-	private double mass;
-	private double scaleFactor = 1;
 	
 	
-	public Ball(double x, double y, double xVector, double yVector, double scaleFactor) {
-		this.x = x;
-		this.y = y;
-		this.xVector = xVector;
-		this.yVector = yVector;
-		this.scaleFactor = scaleFactor;
-		this.radius = 46 * scaleFactor;
+	public Ball(double x, double y) {
+		super(x, y);
 		try {
 			ballPic = ImageIO.read(new File("golfballpic"));
 		} catch (IOException e) {
@@ -32,13 +24,8 @@ public class Ball {
 	
 	
 	public void draw(Graphics g) {
-		
+		g.drawImage(ballPic, (int)(x-radius), (int)(y-radius), (int)(92 * scaleFactor), (int)(92*scaleFactor), null, null);
 	}
-	
-	
-	
-	
-	
 	
 	
 	
