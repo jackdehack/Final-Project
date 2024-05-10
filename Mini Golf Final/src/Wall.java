@@ -1,20 +1,12 @@
-import java.awt.Graphics;
 
-public class Wall extends CollisionObj {
+public class Wall extends CollisionObj{
 	private int rotation;
-	private int pointx;
-	private int pointy;
-	private int width;
-	private int height;
+	public int width;
+	public int height;
 
-	public Wall(int x, int y, int width, int height,Graphics g) {
-		
+	public Wall(double x, double y) {
 		super(x, y);
-		pointx = x;
-		pointy = y;
-		Draw obstacle = new Draw(x,y,g,width,height);
-		
-		
+		super.rectHitBox = true;
 	
 	}
 
