@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 //hello
-
+//OWEN ADDITION
 //euler added thissssssssssssssss
 public class Ball extends CollisionObj{
 	private BufferedImage ballPic; //lol
