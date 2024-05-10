@@ -7,7 +7,7 @@ public class Draw extends JPanel{
 	
 	
 
-	public Draw(int x, int y, Graphics g, int width, int height) {
+	public Draw(int x, int y, int width, int height,Graphics g) {
 		g.drawRect(x, y, width, height);
 	}
 	
