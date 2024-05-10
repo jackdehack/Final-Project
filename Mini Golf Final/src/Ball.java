@@ -11,8 +11,8 @@ import javax.imageio.ImageIO;
 
 public class Ball extends CollisionObj{
 	private BufferedImage ballPic; //lol
-	private double mass;
-	private Vector ballv;
+	public double mass;
+	public Vector ballv;
 	public double radius;
 	
 	
@@ -26,20 +26,6 @@ public class Ball extends CollisionObj{
 		}
 	}
 	
-	
-	
-	
-	public Vector getBallv() {
-		return ballv;
-	}
-
-
-
-
-	public void setBallv(Vector ballv) {
-		this.ballv = ballv;
-	}
-
 
 
 

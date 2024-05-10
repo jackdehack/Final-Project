@@ -54,16 +54,14 @@ public class CollisionObj {
 			
 			
 			if(Math.sqrt((nearestX - x)*(nearestX - x) + (nearestY-y)*(nearestY-y)) <= ((Ball)this).radius) {
-				//collide logic
-				
-				
+				//collision logic
 			}
 
 			
 		}
 		
 		if(other.circleHitBox) {
-			
+			if()
 		}
 		
 		
