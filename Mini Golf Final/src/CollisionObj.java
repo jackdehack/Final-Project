@@ -61,7 +61,7 @@ public class CollisionObj {
 		}
 		
 		if(other.circleHitBox) {
-			if()
+			if((other. - x)*(nearestX - x) + (nearestY-y)*(nearestY-y)) <= ((Ball)this).radius))
 		}
 		
 		
