@@ -56,11 +56,9 @@ public class CollisionObj {
 			
 			
 			if(Math.sqrt((nearestX - x)*(nearestX - x) + (nearestY-y)*(nearestY-y)) <= ((Ball)this).radius) {
-				//collision logic
 				
 				Vector dist = new Vector(((Ball)this).ballv.x - nearestX, ((Ball)this).ballv.y - nearestY);
 				Vector dnormal = new Vector(- dist.y, dist.x);
-
 				double normal_angle = Math.atan2(dnormal.y, dnormal.x);
 				double incoming_angle = Math.atan2(((Ball)this).ballv.y, ((Ball)this).ballv.x);
 				double theta = normal_angle - incoming_angle;

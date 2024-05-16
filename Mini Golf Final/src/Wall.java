@@ -13,12 +13,6 @@ public class Wall extends CollisionObj{
 	
 	}
 
-	public int getRotation() {
-		return rotation;
-	}
 
-	public void setRotation(int rotation) {
-		this.rotation = rotation;
-	}
 
 }
