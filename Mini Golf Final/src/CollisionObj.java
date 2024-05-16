@@ -36,6 +36,8 @@ public class CollisionObj {
 		if (other.rectHitBox) {
 			double nearestX;
 			double nearestY;
+
+			// need to handle for rotated walls too!!!! - figure out!!
 			if (x < ((Wall) (other)).x) {
 				nearestX = other.x;
 			} else if (x > ((Wall) (other)).x + ((Wall) other).width) {
