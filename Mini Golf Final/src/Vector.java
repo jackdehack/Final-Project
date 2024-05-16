@@ -30,7 +30,7 @@ public class Vector {
 	public double dotProduct(Vector other) {
 		return this.x*other.x + this.y*other.y;
 	}
-	
+	//jhkhkhjkh
 	
 	public Vector rotate(double theta) {
 		double cosTheta = Math.cos(theta);

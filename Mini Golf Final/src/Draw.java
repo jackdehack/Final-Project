@@ -10,7 +10,7 @@ public class Draw extends JPanel{
 		this.height = height;
 	}
 	
-
+	//jhkhkhjkh
 	public void paintComponent(Graphics g) {
 		Wall leftWall = new Wall(10, 10, 100, 4, g);
 		leftWall.drawWall(g);

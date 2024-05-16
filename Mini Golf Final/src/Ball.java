@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 //hello
 
 //euler added thissssssssssssssss
-
+//jhkhkhjkh
 public class Ball extends CollisionObj{
 	private BufferedImage ballPic; //lol
 	public double mass;

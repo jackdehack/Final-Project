@@ -20,7 +20,7 @@ public class Wall extends CollisionObj{
 	}
 	
 	
-
+//jhkhkhjkh
 
 
 }

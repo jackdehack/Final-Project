@@ -9,7 +9,7 @@ public class CollisionObj {
 		this.x = x;
 		this.y = y;
 	}
-
+	//jhkhkhjkh
 	protected double getX() {
 		return x;
 	}
