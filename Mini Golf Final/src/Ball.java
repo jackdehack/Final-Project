@@ -30,7 +30,7 @@ public class Ball extends CollisionObj{
 
 
 	public void draw(Graphics g) {
-		g.drawImage(ballPic, (int)(x-radius), (int)(y-radius), (int)(92 * scaleFactor), (int)(92*scaleFactor), null, null);
+		g.drawImage(ballPic, (int)(x-radius), (int)(y-radius), (int)(92), (int)(92), null, null);
 	}
 	
 	

@@ -3,7 +3,6 @@ public class CollisionObj {
 	protected boolean rectHitBox = false;
 	protected double x;
 	protected double y;
-	protected double scaleFactor;
 
 	public CollisionObj(double x, double y) {
 		this.x = x;
@@ -48,8 +47,8 @@ public class CollisionObj {
 
 			if (y < ((Wall) (other)).y) {
 				nearestY = other.y;
-			} else if (y > ((Wall) (other)).y + ((Wall) other).height) {
-				nearestY = ((Wall) (other)).y + ((Wall) other).height;
+			} else if (y > ((Wall) (other)).y + ((Wall) other).length) {
+				nearestY = ((Wall) (other)).y + ((Wall) other).length;
 			} else {
 				nearestY = y;
 			}
