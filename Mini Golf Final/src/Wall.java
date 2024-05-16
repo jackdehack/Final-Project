@@ -8,17 +8,19 @@ public class Wall extends CollisionObj{
 	public Wall(int x, int y,int width, int length, Graphics g) {
 		super(x, y);
 		super.rectHitBox = true;
-		Draw obstacle = new Draw(x,y,width,length,g);
+		g.drawRect(x, y, width,  length);
+		
 		
 	
 	}
-
-	public int getRotation() {
-		return rotation;
+	
+	
+	public void drawWall(Graphics g) {
+		g.drawRect((int)x, (int)y, (int)width, (int)height);
 	}
+	
+	
 
-	public void setRotation(int rotation) {
-		this.rotation = rotation;
-	}
+
 
 }
