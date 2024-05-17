@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 
 public class Wall extends CollisionObj{
 	public double width;
@@ -7,12 +8,12 @@ public class Wall extends CollisionObj{
 	public Vector orientation; 
 	public double theta;
 	
-	//public Wall()
+	
 
-	public Wall(int x, int y,int width, int length, double theta) {
+	public Wall(int x, int y, int length, double theta) {
 		super(x, y);
 		super.rectHitBox = true;
-		this.width = width;
+		this.width = 4;
 		this.theta = theta;
 		this.length = length;
 		orientation = new Vector(1,0);
@@ -20,13 +21,18 @@ public class Wall extends CollisionObj{
 	}
 	
 	
+	
 	public void drawWall(Graphics2D g) {
-		//g.rotate(Math.toRadians(theta), x, y);
-		g.drawRect((int)x, (int)y, (int)width, (int)length);
+		AffineTransform og = g.getTransform();
+		g.rotate(Math.toRadians(theta), x, y);
+		g.drawRect((int)x, (int)y, (int)length, (int)width);
+		g.setTransform(og);
 	}
-	
-	
-//jhkhkhjkh
+
+
+
 
 
 }
+
+

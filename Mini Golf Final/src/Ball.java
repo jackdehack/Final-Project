@@ -16,10 +16,9 @@ public class Ball extends CollisionObj{
 	public double radius;
 	
 	
-	public Ball(double x, double y) {
+	public Ball(double x, double y, Vector v) {
 		super(x, y);
-		ballv.x = x;
-		ballv.y = y;
+		ballv = v;
 		try {
 			ballPic = ImageIO.read(new File("golfballpic"));
 		} catch (IOException e) {
