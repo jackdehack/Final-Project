@@ -9,6 +9,9 @@ import javax.imageio.ImageIO;
 
 //euler added thissssssssssssssss
 //jhkhkhjkh
+
+//euler push test #2
+
 public class Ball extends CollisionObj{
 	private BufferedImage ballPic; //lol
 	public double mass;
