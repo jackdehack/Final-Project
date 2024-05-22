@@ -8,7 +8,8 @@ public class Wall extends CollisionObj{
 	public Vector orientation; 
 	public double theta;
 	
-	
+	//penis
+	//siwejhao;l
 
 	public Wall(int x, int y, int length, double theta) {
 		super(x, y);
