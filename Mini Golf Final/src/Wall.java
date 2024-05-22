@@ -14,6 +14,14 @@ public class Wall extends CollisionObj {
         this.theta = theta;
         this.length = length;
     }
+    
+    public Wall(int x, int y,int width, int length, double theta) {
+        super(x, y);
+        super.rectHitBox = true;
+        this.width = width; // Adjust the width based on wall orientation if needed
+        this.theta = theta;
+        this.length = length;
+    }
 
     public void drawWall(Graphics2D g) {
         AffineTransform og = g.getTransform();

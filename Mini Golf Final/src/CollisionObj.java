@@ -29,40 +29,45 @@ public class CollisionObj {
     protected boolean checkCollides(CollisionObj other) {
         if (other.rectHitBox) {
             Wall wall = (Wall) other;
-            double nearestX = x;
-            double nearestY = y;
+            double ballX = this.x;
+            double ballY = this.y;
+            double radius = ((Ball) this).radius;
 
-            // Calculate the nearest point on the wall to the ball
-            if (wall.theta == 0) { // Horizontal wall
-                if (x < wall.x) {
-                    nearestX = wall.x;
-                } else if (x > wall.x + wall.length) {
-                    nearestX = wall.x + wall.length;
-                }
+            // Wall's start and end points
+            double wallStartX = wall.x;
+            double wallStartY = wall.y;
+            double wallEndX = wall.x + wall.length * Math.cos(Math.toRadians(wall.theta));
+            double wallEndY = wall.y + wall.length * Math.sin(Math.toRadians(wall.theta));
 
-                nearestY = wall.y;
-            } else if (wall.theta == 90) { // Vertical wall
-                nearestX = wall.x;
+            // Vector from wall start to ball position
+            double wallToBallX = ballX - wallStartX;
+            double wallToBallY = ballY - wallStartY;
 
-                if (y < wall.y) {
-                    nearestY = wall.y;
-                } else if (y > wall.y + wall.length) {
-                    nearestY = wall.y + wall.length;
-                }
-            }
+            // Wall vector
+            double wallVectorX = wallEndX - wallStartX;
+            double wallVectorY = wallEndY - wallStartY;
+            double wallLengthSquared = wallVectorX * wallVectorX + wallVectorY * wallVectorY;
 
-            double deltaX = this.x - nearestX;
-            double deltaY = this.y - nearestY;
+            // Project ball position onto wall vector to find the nearest point on the wall segment
+            double projection = (wallToBallX * wallVectorX + wallToBallY * wallVectorY) / wallLengthSquared;
+            projection = Math.max(0, Math.min(1, projection)); // Clamp projection between 0 and 1
+
+            // Calculate the nearest point on the wall
+            double nearestX = wallStartX + projection * wallVectorX;
+            double nearestY = wallStartY + projection * wallVectorY;
+
+            double deltaX = ballX - nearestX;
+            double deltaY = ballY - nearestY;
             double distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
-            if (distance < ((Ball) this).radius) {
+            if (distance < radius) {
                 Vector normal = new Vector(deltaX, deltaY).normalize();
                 Vector velocity = ((Ball) this).ballv;
                 Vector reflectedVelocity = velocity.subtract(normal.multiply(2 * velocity.dotProduct(normal)));
 
                 ((Ball) this).ballv = reflectedVelocity;
 
-                double overlap = ((Ball) this).radius - distance;
+                double overlap = radius - distance;
                 this.x += normal.x * overlap;
                 this.y += normal.y * overlap;
 
@@ -72,6 +77,7 @@ public class CollisionObj {
 
         return false;
     }
+
 
 
 }

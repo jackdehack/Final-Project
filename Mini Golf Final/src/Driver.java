@@ -17,7 +17,8 @@ public class Driver {
             }
             d.b.x += d.b.ballv.x;
             d.b.y += d.b.ballv.y;
-            Thread.sleep(100);
+            
+            Thread.sleep(10);
             frame.repaint();
         }
     }
