@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -16,15 +17,17 @@ public class Ball extends CollisionObj{
 	private BufferedImage ballPic; //lol
 	public double mass;
 	public Vector ballv;
-	public double radius;
+	public double radius = 20;
 	
 	
 	public Ball(double x, double y, Vector v) {
 		super(x, y);
 		ballv = v;
 		try {
-			ballPic = ImageIO.read(new File("golfballpic"));
+			ballPic = ImageIO.read(new File("golfballpic.png"));
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -32,7 +35,7 @@ public class Ball extends CollisionObj{
 
 
 	public void draw(Graphics g) {
-		g.drawImage(ballPic, (int)(x-radius), (int)(y-radius), (int)(92), (int)(92), null, null);
+		g.drawImage(ballPic, (int)(x-radius), (int)(y-radius), (int)(radius), (int)(radius), null, null);
 	}
 	
 	

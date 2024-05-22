@@ -13,7 +13,19 @@ public class Driver {
         frame.add(d);
         frame.setVisible(true);
         
+       while(true) {
+        	for(Wall w: d.walls) {
+        	System.out.println(d.b.checkCollides(w));
+        	}
+        	d.b.x += d.b.ballv.x;
+        	d.b.y += d.b.ballv.y;
+        	Thread.sleep(100);
+        	frame.repaint();
+      }
+        
+        
+        
     }
     
-  //jhkhkhjkh
+
 }
