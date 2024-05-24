@@ -12,8 +12,8 @@ public class Draw extends JPanel {
     public Draw(int width, int height) {
         this.width = width;
         this.height = height;
-        Vector ballv = new Vector(2, 0);
-        b = new Ball(290, 50, ballv);
+        Vector ballv = new Vector(0, -2);
+        b = new Ball(405, 190, ballv);
 
         // Horizontal walls
         Wall tWall = new Wall(250, 10, 500, 0);
@@ -21,7 +21,7 @@ public class Draw extends JPanel {
 
         // Vertical walls
         Wall lWall = new Wall(250, 10, 80, 90);
-        Wall rWall = new Wall(750, -15, 20, 120, 135);
+        Wall rWall = new Wall(400, 40, 20, 50, 90);
         Wall l2Wall = new Wall(750, 10, 280, 90);
 
         walls = new ArrayList<Wall>();
