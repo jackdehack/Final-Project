@@ -14,6 +14,7 @@ public class LevelHandler extends JPanel {
     Ball b;
     ArrayList<Wall> walls;
     BufferedImage bg;
+    Hole h;
 
     public LevelHandler(int width, int height) {
     	try {
@@ -35,6 +36,7 @@ public class LevelHandler extends JPanel {
     public void levelOne() {
     	Vector ballv = new Vector(0, -2);
         b = new Ball(405, 190, ballv);
+        h = new Hole(311, 50);
         
         Wall lWall = new Wall (230, 35, 760, 90);
         Wall rWall = new Wall (455, 35, 760, 90);
@@ -48,6 +50,8 @@ public class LevelHandler extends JPanel {
         walls.add(rWall);
         walls.add(tWall);
         walls.add(bWall);
+        
+        
   
     }
 
@@ -58,5 +62,6 @@ public class LevelHandler extends JPanel {
             w.drawWall(g);
         }
         b.draw(g);
+        h.draw(g);
     }
 }

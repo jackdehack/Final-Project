@@ -12,7 +12,7 @@ public class Hole extends CollisionObj{
 	int y;
 	int radius = 16;
 
-	public Hole(int x, int y) {
+	public Hole(double x, double y) {
 		super(x,y);
         try {
             holePic = ImageIO.read(new File("hole.png"));
@@ -25,7 +25,8 @@ public class Hole extends CollisionObj{
 	
 	
 	public void draw(Graphics g) {
-		 g.drawImage(holePic, x, y, (int)(2 * radius), (int)(2 * radius), null);
+		//g.drawImage(holePic, (int)(x - radius), (int)(y - radius), (int)(2 * radius), (int)(2 * radius), null);
+		
 	}
 	
 	
