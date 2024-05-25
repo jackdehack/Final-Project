@@ -1,39 +1,91 @@
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Driver {
-    public static void main(String[] args) throws Exception {
-        JFrame frame = new JFrame();
-        frame.setTitle("Minigolf");
-        frame.setSize(720, 1280);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        LevelHandler d = new LevelHandler(720, 1280);
-        frame.add(d);
-        frame.setVisible(true);
+	private static JFrame frame;
+	private static LevelHandler gamePanel;
+	private static MenuPanel menuPanel;
+	private static boolean gameStarted = false;
 
-        double frictionFactor = 0.98; // Adjust to model friction; closer to 1 means less friction
+	public static void main(String[] args) throws Exception {
+		frame = new JFrame();
+		frame.setTitle("Minigolf");
+		frame.setSize(720, 1280);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// Initialize the menu panel
+		menuPanel = new MenuPanel();
+		frame.add(menuPanel);
+		// Add action listeners to the buttons
+		addMenuButtonListeners();
+		frame.setVisible(true);
+	}
 
-        while (true) {
-            for (Wall w : d.walls) {
-                d.b.checkCollides(w);
-            }
-            
-            d.b.checkCollides(d.h);
+	private static void addMenuButtonListeners() {
+		menuPanel.getStartButton().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				startGame();
+			}
+		});
+		for (Button difficultyButton : menuPanel.getDifficultyButtons()) {
+			difficultyButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// Handle difficulty selection
+					System.out.println("Difficulty selected: " + difficultyButton.getText());
+				}
+			});
+		}
+		for (Button levelButton : menuPanel.getLevelButtons()) {
+			levelButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// Handle level selection
+					System.out.println("Level selected: " + levelButton.getText());
+				}
+			});
+		}
+	}
 
-            // Apply friction
-            d.b.ballv.x *= frictionFactor;
-            d.b.ballv.y *= frictionFactor;
+	private static void startGame() {
+		gamePanel = new LevelHandler(720, 1280);
+		frame.remove(menuPanel);
+		frame.add(gamePanel);
+		frame.revalidate();
+		frame.repaint();
+		gameStarted = true;
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				gameLoop();
+			}
+		}).start();
+	}
 
-            // Update ball position
-            d.b.x += d.b.ballv.x;
-            d.b.y += d.b.ballv.y;
-
-            // Stop ball if velocity is very small
-            if (d.b.ballv.magnitude() < 0.1) {
-                d.b.ballv = new Vector(0, 0);
-            }
-
-            Thread.sleep(10);
-            frame.repaint();
-        }
-    }
+	private static void gameLoop() {
+		double frictionFactor = 0.98; // Adjust to model friction; closer to 1 means less friction
+		while (gameStarted) {
+			for (Wall w : gamePanel.walls) {
+				gamePanel.b.checkCollides(w);
+			}
+			gamePanel.b.checkCollides(gamePanel.h);
+			// Apply friction
+			gamePanel.b.ballv.x *= frictionFactor;
+			gamePanel.b.ballv.y *= frictionFactor;
+			// Update ball position
+			gamePanel.b.x += gamePanel.b.ballv.x;
+			gamePanel.b.y += gamePanel.b.ballv.y;
+			// Stop ball if velocity is very small
+			if (gamePanel.b.ballv.magnitude() < 0.1) {
+				gamePanel.b.ballv = new Vector(0, 0);
+			}
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			frame.repaint();
+		}
+	}
 }
