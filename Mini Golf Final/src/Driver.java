@@ -15,6 +15,8 @@ public class Driver {
             for (Wall w : d.walls) {
                 d.b.checkCollides(w);
             }
+            d.b.checkCollides(d.h);
+            
             d.b.x += d.b.ballv.x;
             d.b.y += d.b.ballv.y;
             Thread.sleep(10);
