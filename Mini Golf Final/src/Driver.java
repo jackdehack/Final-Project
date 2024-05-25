@@ -16,17 +16,12 @@ public class Driver {
             for (Wall w : d.walls) {
                 d.b.checkCollides(w);
             }
-<<<<<<< HEAD
 
             // Apply friction
             d.b.ballv.x *= frictionFactor;
             d.b.ballv.y *= frictionFactor;
 
             // Update ball position
-=======
-            d.b.checkCollides(d.h);
-            
->>>>>>> 9642b1ee516246e37f5d1a8a3699e3fd58d294a2
             d.b.x += d.b.ballv.x;
             d.b.y += d.b.ballv.y;
 
