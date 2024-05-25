@@ -26,8 +26,33 @@ public class LevelHandler extends JPanel {
         }
 
         this.width = width;
+<<<<<<< HEAD
         this.height = height;
         projectionPoints = new ArrayList<>();
+=======
+        this.height = height;  
+<<<<<<< HEAD
+        
+        
+      //if(levelOne ...){}
+        levelOne();
+    }
+    
+    
+    
+    public void levelOne() {
+    	Vector ballv = new Vector(0, -2);
+        b = new Ball(340, 190, ballv);
+        h = new Hole(340, 90);
+        
+        Wall lWall = new Wall (230, 35, 760, 90);
+        Wall rWall = new Wall (455, 35, 760, 90);
+        Wall tWall = new Wall (230, 35, 221, 0);
+        Wall bWall = new Wall (230, 791, 221, 0);
+=======
+>>>>>>> d1dd351138cd542508d4af26ed612f53bf68c001
+
+>>>>>>> 9642b1ee516246e37f5d1a8a3699e3fd58d294a2
         levelOne();
 
         addMouseListener(new MouseAdapter() {

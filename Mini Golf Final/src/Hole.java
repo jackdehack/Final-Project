@@ -12,6 +12,7 @@ public class Hole extends CollisionObj{
 
 	public Hole(double x, double y) {
 		super(x,y);
+		super.circleHitBox = true;
         try {
             holePic = ImageIO.read(new File("hole.png"));
         } catch (IOException e) {

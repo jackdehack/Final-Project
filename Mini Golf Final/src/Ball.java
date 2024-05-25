@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Ball extends CollisionObj {
+	boolean isIn = false;
     private BufferedImage ballPic;
     public double mass;
     public Vector ballv;
@@ -25,7 +26,9 @@ public class Ball extends CollisionObj {
     }
 
     public void draw(Graphics g) {
+    	if(!isIn) {
         g.drawImage(ballPic, (int)(x - radius), (int)(y - radius), (int)(2 * radius), (int)(2 * radius), null);
+    	}
     }
 
     public boolean contains(Point p) {

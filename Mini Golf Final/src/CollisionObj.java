@@ -75,6 +75,16 @@ public class CollisionObj {
                 }
             }
         }
+        
+        
+        if(other.circleHitBox) {
+        	Vector dist = new Vector(x - other.x, y - other.y);
+        	double distance = Math.sqrt(dist.x * dist.x + dist.y * dist.y);
+        	
+        	if (distance < ((Ball) this).radius) {
+        		((Ball)this).isIn = true;
+        	}
+        }
 
         return false;
     }
