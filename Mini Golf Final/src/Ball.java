@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -28,5 +29,11 @@ public class Ball extends CollisionObj {
     	if(!isIn) {
         g.drawImage(ballPic, (int)(x - radius), (int)(y - radius), (int)(2 * radius), (int)(2 * radius), null);
     	}
+    }
+
+    public boolean contains(Point p) {
+        double dx = p.x - x;
+        double dy = p.y - y;
+        return (dx * dx + dy * dy) <= (radius * radius);
     }
 }
