@@ -8,8 +8,6 @@ import javax.imageio.ImageIO;
 public class Hole extends CollisionObj{
 	
 	BufferedImage holePic;
-	int x;
-	int y;
 	int radius = 16;
 
 	public Hole(double x, double y) {
@@ -25,7 +23,7 @@ public class Hole extends CollisionObj{
 	
 	
 	public void draw(Graphics g) {
-		//g.drawImage(holePic, (int)(x - radius), (int)(y - radius), (int)(2 * radius), (int)(2 * radius), null);
+		g.drawImage(holePic, (int)(x - radius), (int)(y - radius), (int)(2 * radius), (int)(2 * radius), null);
 		
 	}
 	
