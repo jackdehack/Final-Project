@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -16,6 +15,8 @@ public class LevelHandler extends JPanel {
     BufferedImage bg;
     Hole h;
     Point initialClick;
+    ArrayList<Point> projectionPoints;
+    double maxSpeed = 10.0; // Define maximum speed for the ball
 
     public LevelHandler(int width, int height) {
         try {
@@ -25,9 +26,10 @@ public class LevelHandler extends JPanel {
         }
 
         this.width = width;
-        this.height = height;  
-
+        this.height = height;
+        projectionPoints = new ArrayList<>();
         levelOne();
+
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -43,8 +45,10 @@ public class LevelHandler extends JPanel {
                     double dx = initialClick.x - releasePoint.x;
                     double dy = initialClick.y - releasePoint.y;
                     double velocityFactor = 0.1; // Adjust as needed for game balance
-                    b.ballv = new Vector(dx * velocityFactor, dy * velocityFactor);
+                    Vector newVelocity = new Vector(dx * velocityFactor, dy * velocityFactor);
+                    b.ballv = capSpeed(newVelocity, maxSpeed);
                     initialClick = null;
+                    projectionPoints.clear();
                 }
             }
         });
@@ -52,9 +56,44 @@ public class LevelHandler extends JPanel {
         addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                // You can add visual feedback for the drag here if needed
+                if (initialClick != null) {
+                    Point currentPoint = e.getPoint();
+                    double dx = initialClick.x - currentPoint.x;
+                    double dy = initialClick.y - currentPoint.y;
+                    double velocityFactor = 0.1; // Same factor as in mouseReleased
+                    Vector projectedVelocity = new Vector(dx * velocityFactor, dy * velocityFactor);
+                    projectedVelocity = capSpeed(projectedVelocity, maxSpeed);
+                    updateProjectionPoints(projectedVelocity);
+                }
             }
         });
+    }
+
+    private Vector capSpeed(Vector velocity, double maxSpeed) {
+        double speed = velocity.magnitude();
+        if (speed > maxSpeed) {
+            double scale = maxSpeed / speed;
+            return new Vector(velocity.x * scale, velocity.y * scale);
+        }
+        return velocity;
+    }
+
+    private void updateProjectionPoints(Vector velocity) {
+        projectionPoints.clear();
+        double timeStep = 0.1;
+        double dampingFactor = 0.98; // To simulate friction/air resistance
+        double x = b.x;
+        double y = b.y;
+        double vx = velocity.x;
+        double vy = velocity.y;
+
+        for (int i = 0; i < 20; i++) {
+            x += vx * timeStep;
+            y += vy * timeStep;
+            projectionPoints.add(new Point((int) x, (int) y));
+            vx *= dampingFactor;
+            vy *= dampingFactor;
+        }
     }
 
     public void levelOne() {
@@ -82,5 +121,18 @@ public class LevelHandler extends JPanel {
         }
         b.draw(g);
         h.draw(g);
+
+        if (initialClick != null) {
+            drawProjectionLine(g);
+        }
+    }
+
+    private void drawProjectionLine(Graphics2D g) {
+        g.setColor(Color.RED);
+        for (int i = 0; i < projectionPoints.size(); i++) {
+            Point p = projectionPoints.get(i);
+            int size = Math.max(2, 10 - i); // Dots get smaller further from the ball
+            g.fillOval(p.x - size / 2, p.y - size / 2, size, size);
+        }
     }
 }
