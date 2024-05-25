@@ -97,8 +97,8 @@ public class LevelHandler extends JPanel {
     }
 
     public void levelOne() {
-        b = new Ball(405, 190, new Vector(0, 0));
-        h = new Hole(311, 50);
+        b = new Ball(340, 690, new Vector(0, 0));
+        h = new Hole(340, 90);
 
         Wall lWall = new Wall(230, 35, 760, 90);
         Wall rWall = new Wall(455, 35, 760, 90);
