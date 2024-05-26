@@ -1,10 +1,16 @@
 import javax.swing.*;
+
+import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Label;
 
 public class MenuPanel extends JPanel {
 	private Button startButton;
 	private Button[] difficultyButtons;
 	private Button[] levelButtons;
+	int swings;
+	Label totalSwings;
+	
 
 	public MenuPanel() {
 		setLayout(null);
@@ -30,16 +36,29 @@ public class MenuPanel extends JPanel {
 			add(difficultyButtons[i]);
 		}
 		// Level buttons
-		levelButtons = new Button[10];
-		for (int i = 0; i < 10; i++) {
+		levelButtons = new Button[5];
+		for (int i = 0; i < 5; i++) {
 			levelButtons[i] = new Button("Level " + (i + 1));
-			levelButtons[i].setBounds(120 + (i % 5) * 100, 800 + (i / 5) * 60, 80, 50);
+			levelButtons[i].setBounds(120 + (i % 5) * 100, 750 + (i / 5) * 60, 80, 50);
 			add(levelButtons[i]);
 		}
+		
+		
+		totalSwings = new Label("Total swings: " + swings);
+		totalSwings.setBounds(310, 500, 100, 150);
+		add(totalSwings);
+		
 	}
 	
 	
-
+	public void refreshData() {
+		remove(totalSwings);
+		totalSwings = new Label("Total swings: " + swings);
+		totalSwings.setBounds(310, 500, 100, 150);
+		add(totalSwings);
+	}
+	
+	
 	// Getter methods for the buttons
 	public Button getStartButton() {
 		return startButton;
