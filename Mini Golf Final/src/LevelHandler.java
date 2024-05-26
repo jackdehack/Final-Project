@@ -17,7 +17,7 @@ public class LevelHandler extends JPanel {
     Hole h;
     Point initialClick;
     ArrayList<Point> projectionPoints;
-    
+    static int[] holeSwings = new int[5];    
     int swings;
     int par;
 

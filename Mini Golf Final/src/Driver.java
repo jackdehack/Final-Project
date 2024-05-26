@@ -92,7 +92,19 @@ public class Driver {
 
 	private static void gameLoop() {
 		double frictionFactor = 0.98; // Adjust to model friction; closer to 1 means less friction
+		int counter = 0;
 		while (gameStarted) {
+			
+			if(gamePanel.h.animationTriggered) {
+				counter++;
+					if(counter <= 30) {
+					gamePanel.h.flagY -= counter*5;
+					frame.repaint();
+					}
+			if(counter == 30) {
+				gamePanel.h.isVisible = false;
+			}
+			}
 			
 			shotsTaken.setText("Swings: " + gamePanel.swings);
 			par.setText("Par: " + gamePanel.par);
@@ -119,6 +131,7 @@ public class Driver {
 			frame.repaint();
 			
 			if(gamePanel.b.isIn) {
+				LevelHandler.holeSwings[level-1] = gamePanel.swings;
 				break;
 			}
 		}
@@ -128,8 +141,17 @@ public class Driver {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		int sumSwings = 0;
+		for(int i = 0; i < LevelHandler.holeSwings.length; i++) {
+			sumSwings += LevelHandler.holeSwings[i];
+		}
+		menuPanel.swings = sumSwings;
+		
+		
 		frame.remove(gamePanel);
 		frame.add(menuPanel);
+		menuPanel.refreshData();
 		frame.repaint();
 	}
 	
