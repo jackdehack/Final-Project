@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
@@ -44,7 +45,8 @@ public class Wall extends CollisionObj {
     public void drawWall(Graphics2D g) {
         AffineTransform og = g.getTransform();
         g.rotate(Math.toRadians(theta), x, y);
-        g.drawRect((int) x, (int) y, (int) length, (int) width);
+        g.setColor(Color.black);
+        g.fillRect((int) x, (int) y, (int) length, (int) width);
         g.setTransform(og);
     }
 }

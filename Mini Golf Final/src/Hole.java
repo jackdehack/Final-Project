@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 public class Hole extends CollisionObj{
 	
 	BufferedImage holePic;
-	int radius = 16;
+	int radius = 8;
 
 	public Hole(double x, double y) {
 		super(x,y);

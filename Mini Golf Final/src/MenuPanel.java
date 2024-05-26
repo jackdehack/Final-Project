@@ -1,5 +1,5 @@
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Button;
 
 public class MenuPanel extends JPanel {
 	private Button startButton;
@@ -37,6 +37,8 @@ public class MenuPanel extends JPanel {
 			add(levelButtons[i]);
 		}
 	}
+	
+	
 
 	// Getter methods for the buttons
 	public Button getStartButton() {

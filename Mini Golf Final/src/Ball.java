@@ -13,7 +13,7 @@ public class Ball extends CollisionObj {
     private BufferedImage ballPic;
     public double mass;
     public Vector ballv;
-    public double radius = 16;
+    public double radius = 8;
 
     public Ball(double x, double y, Vector v) {
         super(x, y);

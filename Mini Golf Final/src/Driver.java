@@ -1,4 +1,6 @@
 import javax.swing.*;
+
+import java.awt.Button;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,6 +9,7 @@ public class Driver {
 	private static LevelHandler gamePanel;
 	private static MenuPanel menuPanel;
 	private static boolean gameStarted = false;
+	static int level;
 
 	public static void main(String[] args) throws Exception {
 		frame = new JFrame();
@@ -33,7 +36,7 @@ public class Driver {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// Handle difficulty selection
-					System.out.println("Difficulty selected: " + difficultyButton.getText());
+					System.out.println("Difficulty selected: " + difficultyButton.getLabel());
 				}
 			});
 		}
@@ -42,14 +45,22 @@ public class Driver {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// Handle level selection
-					System.out.println("Level selected: " + levelButton.getText());
+					System.out.println("Level selected: " + levelButton.getLabel());
+					level = Integer.parseInt((levelButton.getLabel().substring(6)));
+				
+							
+							
 				}
 			});
 		}
 	}
 
 	private static void startGame() {
-		gamePanel = new LevelHandler(720, 1280);
+		if(level == 0) {
+			level = 1;
+		}
+		
+		gamePanel = new LevelHandler(720, 1280, level);
 		frame.remove(menuPanel);
 		frame.add(gamePanel);
 		frame.revalidate();

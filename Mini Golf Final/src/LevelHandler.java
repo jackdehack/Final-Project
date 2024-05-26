@@ -1,4 +1,5 @@
 import java.awt.*;
+
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,9 +17,21 @@ public class LevelHandler extends JPanel {
     Hole h;
     Point initialClick;
     ArrayList<Point> projectionPoints;
-    double maxSpeed = 10.0; // Define maximum speed for the ball
 
-    public LevelHandler(int width, int height) {
+    
+    
+    double maxSpeed = 6.5; 
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public LevelHandler(int width, int height, int level) {
         try {
             bg = ImageIO.read(new File("Background.png"));
         } catch (IOException e) {
@@ -28,7 +41,30 @@ public class LevelHandler extends JPanel {
         this.width = width;
         this.height = height;
         projectionPoints = new ArrayList<>();
+        
+        
+        if(level == 1) {
         levelOne();
+        }
+        
+        if(level == 2) {
+            levelTwo();
+        }
+        
+        if(level == 3) {
+            levelThree();
+        }
+        
+        if(level == 4) {
+            levelFour();
+        }
+        
+        if(level == 5) {
+            levelFive();
+        }
+        
+        
+       
 
         addMouseListener(new MouseAdapter() {
             @Override
@@ -68,6 +104,12 @@ public class LevelHandler extends JPanel {
             }
         });
     }
+    
+    
+    
+    
+    
+    
 
     private Vector capSpeed(Vector velocity, double maxSpeed) {
         double speed = velocity.magnitude();
@@ -80,19 +122,16 @@ public class LevelHandler extends JPanel {
 
     private void updateProjectionPoints(Vector velocity) {
         projectionPoints.clear();
-        double timeStep = 0.1;
-        double dampingFactor = 0.98; // To simulate friction/air resistance
+        double timeStep = 4;
         double x = b.x;
         double y = b.y;
         double vx = velocity.x;
         double vy = velocity.y;
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < velocity.magnitude() * 1.5; i++) {
             x += vx * timeStep;
             y += vy * timeStep;
             projectionPoints.add(new Point((int) x, (int) y));
-            vx *= dampingFactor;
-            vy *= dampingFactor;
         }
     }
 
@@ -111,6 +150,65 @@ public class LevelHandler extends JPanel {
         walls.add(tWall);
         walls.add(bWall);
     }
+    
+    
+    
+    public void levelTwo() {
+    	
+    	
+    	b = new Ball(240, 670, new Vector(0, 0));
+        h = new Hole(230, 90);
+        
+        
+    	Wall wall1 = new Wall(190, 35, 200, 90);
+    	Wall wall2 = new Wall(190, 35, 100, 0);
+    	Wall wall3 = new Wall(290, 35, 150, 45);
+    	Wall wall4 = new Wall(186, 235, 104, 0);
+    	Wall wall5 = new Wall(396, 141, 450, 90);
+    	Wall wall6 = new Wall(290, 235, 250, 90);
+    	Wall wall7 = new Wall(290, 485, 150, 135);
+    	Wall wall8 = new Wall(396, 591, 106, 180);
+    	Wall wall9 = new Wall(186, 587, 100, 90);
+    	Wall wall10 = new Wall(182, 687, 110, 0);
+    	Wall wall11 = new Wall(294, 591, 100, 90);
+    	
+    	walls = new ArrayList<Wall>();
+    	walls.add(wall1);
+    	walls.add(wall2);
+    	walls.add(wall3);
+    	walls.add(wall4);
+    	walls.add(wall5);
+    	walls.add(wall6);
+    	walls.add(wall7);
+    	walls.add(wall8);
+    	walls.add(wall9);
+    	walls.add(wall10);
+    	walls.add(wall11);
+    	
+    }
+    
+    
+    public void levelThree() {
+    	
+    }
+    
+    
+    public void levelFour() {
+    	
+    }
+    
+    
+    public void levelFive() {
+    	
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 
     public void paintComponent(Graphics k) {
         super.paintComponent(k); // Call the superclass method to ensure the panel is properly rendered
@@ -128,11 +226,10 @@ public class LevelHandler extends JPanel {
     }
 
     private void drawProjectionLine(Graphics2D g) {
-        g.setColor(Color.RED);
+        g.setColor(Color.white);
         for (int i = 0; i < projectionPoints.size(); i++) {
             Point p = projectionPoints.get(i);
-            int size = Math.max(2, 10 - i); // Dots get smaller further from the ball
-            g.fillOval(p.x - size / 2, p.y - size / 2, size, size);
+            g.fillOval(p.x, p.y, 4, 4);
         }
     }
 }
