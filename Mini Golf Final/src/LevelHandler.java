@@ -66,7 +66,7 @@ public class LevelHandler extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                if (b.contains(e.getPoint()) && b.ballv.magnitude() == 0) {
+                if (b.contains(e.getPoint())) {
                     initialClick = e.getPoint();
                 }
             }
@@ -258,8 +258,8 @@ public class LevelHandler extends JPanel {
         for (Wall w : walls) {
             w.drawWall(g);
         }
-        h.draw(g);
         b.draw(g);
+        h.draw(g);
 
         if (initialClick != null) {
             drawProjectionLine(g);
