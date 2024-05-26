@@ -71,4 +71,7 @@ public class MenuPanel extends JPanel {
 	public Button[] getLevelButtons() {
 		return levelButtons;
 	}
+
+
+
 }

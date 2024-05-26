@@ -91,10 +91,11 @@ public class Driver {
 	}
 
 	private static void gameLoop() {
+		
+		
 		double frictionFactor = 0.98; // Adjust to model friction; closer to 1 means less friction
 		int counter = 0;
-		while (gameStarted) {
-			
+		while (gameStarted) {			
 			if(gamePanel.h.animationTriggered) {
 				counter++;
 					if(counter <= 30) {
@@ -136,7 +137,7 @@ public class Driver {
 			}
 		}
 		try {
-			Thread.sleep(100);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -151,7 +152,7 @@ public class Driver {
 		
 		frame.remove(gamePanel);
 		frame.add(menuPanel);
-		menuPanel.refreshData();
+		menuPanel.refreshData();		
 		frame.repaint();
 	}
 	
