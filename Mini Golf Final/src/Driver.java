@@ -10,7 +10,7 @@ public class Driver {
         frame.add(d);
         frame.setVisible(true);
 
-        double frictionFactor = 0.98; // Adjust to model friction; closer to 1 means less friction
+        double frictionFactor = 0.9865; // Adjust to model friction; closer to 1 means less friction
 
         while (true) {
             for (Wall w : d.walls) {

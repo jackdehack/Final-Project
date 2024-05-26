@@ -81,13 +81,13 @@ public class LevelHandler extends JPanel {
     private void updateProjectionPoints(Vector velocity) {
         projectionPoints.clear();
         double timeStep = 0.1;
-        double dampingFactor = 0.98; // To simulate friction/air resistance
+        double dampingFactor = 0.995; // Less aggressive damping for a longer projection
         double x = b.x;
         double y = b.y;
         double vx = velocity.x;
         double vy = velocity.y;
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 100; i++) { // Further increased number of points for longer projection
             x += vx * timeStep;
             y += vy * timeStep;
             projectionPoints.add(new Point((int) x, (int) y));
@@ -131,7 +131,7 @@ public class LevelHandler extends JPanel {
         g.setColor(Color.RED);
         for (int i = 0; i < projectionPoints.size(); i++) {
             Point p = projectionPoints.get(i);
-            int size = Math.max(2, 10 - i); // Dots get smaller further from the ball
+            int size = Math.max(2, 10 - i / 10); // Dots get smaller further from the ball
             g.fillOval(p.x - size / 2, p.y - size / 2, size, size);
         }
     }
