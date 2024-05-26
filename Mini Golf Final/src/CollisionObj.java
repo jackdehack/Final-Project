@@ -84,6 +84,10 @@ public class CollisionObj {
         	if (distance < ((Ball) this).radius) {
         		((Ball)this).isIn = true;
         	}
+        	
+        	if(distance < ((Hole)other).flagRadius) {
+        		((Hole)other).animationTriggered = true;
+        	}
         }
 
         return false;
