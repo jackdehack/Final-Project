@@ -17,17 +17,14 @@ public class LevelHandler extends JPanel {
     Hole h;
     Point initialClick;
     ArrayList<Point> projectionPoints;
+    
+    int swings;
+    int par;
 
     
     
     double maxSpeed = 6.5; 
 
-    
-    
-    
-    
-    
-    
     
     
     
@@ -85,6 +82,7 @@ public class LevelHandler extends JPanel {
                     b.ballv = capSpeed(newVelocity, maxSpeed);
                     initialClick = null;
                     projectionPoints.clear();
+                    swings++;
                 }
             }
         });
@@ -136,14 +134,18 @@ public class LevelHandler extends JPanel {
     }
 
     public void levelOne() {
+    	par = 2;
+    	
         b = new Ball(340, 690, new Vector(0, 0));
         h = new Hole(340, 90);
 
+        
         Wall lWall = new Wall(230, 35, 760, 90);
         Wall rWall = new Wall(455, 35, 760, 90);
         Wall tWall = new Wall(230, 35, 221, 0);
         Wall bWall = new Wall(230, 791, 221, 0);
 
+        
         walls = new ArrayList<Wall>();
         walls.add(lWall);
         walls.add(rWall);
@@ -154,6 +156,7 @@ public class LevelHandler extends JPanel {
     
     
     public void levelTwo() {
+    	par = 3;
     	
     	
     	b = new Ball(240, 670, new Vector(0, 0));
@@ -173,7 +176,10 @@ public class LevelHandler extends JPanel {
     	Wall wall10 = new Wall(182, 687, 110, 0);
     	Wall wall11 = new Wall(294, 591, 100, 90);
     	
+    	
     	walls = new ArrayList<Wall>();
+    	
+    	
     	walls.add(wall1);
     	walls.add(wall2);
     	walls.add(wall3);
@@ -185,8 +191,8 @@ public class LevelHandler extends JPanel {
     	walls.add(wall9);
     	walls.add(wall10);
     	walls.add(wall11);
+    	walls.add(obstacle);  
     	
-    	walls.add(obstacle);  	
     }
     
     
@@ -226,6 +232,10 @@ public class LevelHandler extends JPanel {
             drawProjectionLine(g);
         }
     }
+    
+    
+    
+    
 
     private void drawProjectionLine(Graphics2D g) {
         g.setColor(Color.white);
@@ -234,4 +244,7 @@ public class LevelHandler extends JPanel {
             g.fillOval(p.x, p.y, 4, 4);
         }
     }
+    
+    
+    
 }

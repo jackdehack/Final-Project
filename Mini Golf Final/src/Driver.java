@@ -1,12 +1,18 @@
 import javax.swing.*;
 
+import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 public class Driver {
 	private static JFrame frame;
 	private static LevelHandler gamePanel;
+	static Label par;
+	static Label shotsTaken;
+	
 	private static MenuPanel menuPanel;
 	private static boolean gameStarted = false;
 	static int level;
@@ -58,10 +64,20 @@ public class Driver {
 	private static void startGame() {
 		if(level == 0) {
 			level = 1;
-		}
-		
+		}	
 		gamePanel = new LevelHandler(720, 1280, level);
+		
+		shotsTaken = new Label("Swings: " + gamePanel.swings);
+		shotsTaken.setAlignment(Label.RIGHT);
+		gamePanel.add(shotsTaken, BorderLayout.NORTH);
+		
+		par = new Label("Par: " + gamePanel.par);
+		par.setAlignment(Label.RIGHT);
+		gamePanel.add(par, BorderLayout.NORTH);
+		
+		
 		frame.remove(menuPanel);
+		
 		frame.add(gamePanel);
 		frame.revalidate();
 		frame.repaint();
@@ -77,6 +93,10 @@ public class Driver {
 	private static void gameLoop() {
 		double frictionFactor = 0.98; // Adjust to model friction; closer to 1 means less friction
 		while (gameStarted) {
+			
+			shotsTaken.setText("Swings: " + gamePanel.swings);
+			par.setText("Par: " + gamePanel.par);
+			
 			for (Wall w : gamePanel.walls) {
 				gamePanel.b.checkCollides(w);
 			}
@@ -97,6 +117,23 @@ public class Driver {
 				e.printStackTrace();
 			}
 			frame.repaint();
+			
+			if(gamePanel.b.isIn) {
+				break;
+			}
 		}
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		frame.remove(gamePanel);
+		frame.add(menuPanel);
+		frame.repaint();
 	}
+	
+	
+	
+	
 }
