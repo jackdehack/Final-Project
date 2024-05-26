@@ -1,10 +1,6 @@
 /Ball.class
 /Button.class
 /CollisionObj.class
-/Driver$1.class
-/Driver$2.class
-/Driver$3.class
-/Driver$4.class
 /Driver.class
 /Hole.class
 /LevelHandler$1.class
@@ -13,3 +9,7 @@
 /MenuPanel.class
 /Vector.class
 /Wall.class
+/Driver$1.class
+/Driver$2.class
+/Driver$3.class
+/Driver$4.class
