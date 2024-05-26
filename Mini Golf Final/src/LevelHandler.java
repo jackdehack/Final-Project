@@ -163,6 +163,7 @@ public class LevelHandler extends JPanel {
     	Wall wall1 = new Wall(190, 35, 200, 90);
     	Wall wall2 = new Wall(190, 35, 100, 0);
     	Wall wall3 = new Wall(290, 35, 150, 45);
+    	Wall obstacle = new Wall(320, 180, 40, 40, -15);
     	Wall wall4 = new Wall(186, 235, 104, 0);
     	Wall wall5 = new Wall(396, 141, 450, 90);
     	Wall wall6 = new Wall(290, 235, 250, 90);
@@ -185,6 +186,7 @@ public class LevelHandler extends JPanel {
     	walls.add(wall10);
     	walls.add(wall11);
     	
+    	walls.add(obstacle);  	
     }
     
     
