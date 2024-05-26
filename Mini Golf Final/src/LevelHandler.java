@@ -41,7 +41,7 @@ public class LevelHandler extends JPanel {
         
         
         if(level == 1) {
-        levelOne();
+        	levelOne();
         }
         
         if(level == 2) {
@@ -197,7 +197,40 @@ public class LevelHandler extends JPanel {
     
     
     public void levelThree() {
+    	par = 4;
     	
+    	
+    	b = new Ball(440, 650, new Vector(0, 0));
+        h = new Hole(320, 140);
+        
+        
+    	Wall wall1 = new Wall(380, 700, 130, 0);
+    	Wall wall2 = new Wall(380, 600, 130, 0);
+    	Wall wall3 = new Wall(510, 600, 104, 90);
+    	Wall obstacle = new Wall(300, 220, 50, 50, 15);
+    	Wall obstacle2 = new Wall(290, 420, 10, 60, -15);
+    	Wall obstacle3 = new Wall(270, 620, 10, 65, -45);
+    	Wall wall4 = new Wall(380, 700, 100, 90);
+    	Wall wall5 = new Wall(380, 800, 120, 180);
+    	Wall wall6 = new Wall(380, 100, 120, 180);
+    	Wall wall7 = new Wall(380, 600, 504, -90);
+    	Wall wall8 = new Wall(260, 96, 704, 90);
+    	
+    	
+    	walls = new ArrayList<Wall>();
+    	
+    	
+    	walls.add(wall1);
+    	walls.add(wall2);
+    	walls.add(wall3);
+    	walls.add(wall4);
+    	walls.add(wall5);
+    	walls.add(wall6);
+    	walls.add(wall7);
+    	walls.add(wall8);
+    	walls.add(obstacle); 
+        walls.add(obstacle2);  
+        walls.add(obstacle3);  
     }
     
     
