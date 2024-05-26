@@ -81,8 +81,11 @@ public class CollisionObj {
         	Vector dist = new Vector(x - other.x, y - other.y);
         	double distance = Math.sqrt(dist.x * dist.x + dist.y * dist.y);
         	
-        	if (distance < ((Ball) this).radius) {
+        	if (distance <= ((Ball) this).radius) {
+        		if(((Ball)this).ballv.magnitude() <= 3) {
+        		((Ball)this).ballv = new Vector(0, 0);
         		((Ball)this).isIn = true;
+        		}
         	}
         	
         	if(distance < ((Hole)other).flagRadius) {

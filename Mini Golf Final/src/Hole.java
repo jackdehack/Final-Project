@@ -10,7 +10,7 @@ public class Hole extends CollisionObj{
 	
 	BufferedImage holePic;
 	BufferedImage flagPic;
-	int radius = 8;
+	int radius = 12;
 	int flagRadius = 40;
 	double flagX;
 	double flagY;
