@@ -50,3 +50,4 @@ public class Wall extends CollisionObj {
         g.setTransform(og);
     }
 }
+
