@@ -1,9 +1,13 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Graphics;
 import java.awt.Label;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class MenuPanel extends JPanel {
 	private Button startButton;
@@ -11,12 +15,21 @@ public class MenuPanel extends JPanel {
 	private Button[] levelButtons;
 	int swings;
 	Label totalSwings;
-	
-    BufferedImage[][] holeStars = new BufferedImage[5][3];
-	
+	BufferedImage emptyStar;
+	BufferedImage fullStar;
+	int[] levelScores = { 0, 0, 0, 0, 0 };
+
+	BufferedImage[][] holeStars = new BufferedImage[5][3];
 
 	public MenuPanel() {
 		setLayout(null);
+		try {
+			emptyStar = ImageIO.read(new File("emptyStar.png"));
+			fullStar = ImageIO.read(new File("fullStar.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		// Background
 //		JLabel background = new JLabel(new ImageIcon("background.png"));
 //		background.setBounds(0, 0, 720, 1280);
@@ -45,27 +58,67 @@ public class MenuPanel extends JPanel {
 			levelButtons[i].setBounds(120 + (i % 5) * 100, 750 + (i / 5) * 60, 80, 50);
 			add(levelButtons[i]);
 		}
-		
-		
+
 		totalSwings = new Label("Total swings: " + swings);
 		totalSwings.setBounds(310, 500, 100, 150);
 		add(totalSwings);
-		
 	}
-	
+
 	public void Scored() {
-		
+
 	}
-	
-	
+
 	public void refreshData() {
 		remove(totalSwings);
 		totalSwings = new Label("Total swings: " + swings);
 		totalSwings.setBounds(310, 500, 100, 150);
 		add(totalSwings);
 	}
-	
-	
+
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+
+		for (int i = 0; i < levelButtons.length; i++) {
+			int swingsForLevel = LevelHandler.holeSwings[i];
+			int parForLevel = getParForLevel(i + 1);
+			levelScores[i] = LevelHandler.calculateHoleStars(swingsForLevel, parForLevel);
+		}
+
+		for (int i = 0; i < levelButtons.length; i++) {
+			int x = 129 + (i % 5) * 100;
+			int y = 805 + (i / 5) * 60;
+			drawStars(g, x, y, levelScores[i]);
+		}
+	}
+
+	private void drawStars(Graphics g, int x, int y, int score) {
+
+		for (int i = 0; i < 3; i++) {
+			if (i < score) {
+				g.drawImage(fullStar, x + i * 20, y, 20, 20, null);
+			} else {
+				g.drawImage(emptyStar, x + i * 20, y, 20, 20, null);
+			}
+		}
+	}
+
+	private int getParForLevel(int level) {
+		switch (level) {
+		case 1:
+			return 2;
+		case 2:
+			return 3;
+		case 3:
+			return 4;
+		case 4:
+			return 4;
+		case 5:
+			return 6;
+		default:
+			return 3;
+		}
+	}
+
 	// Getter methods for the buttons
 	public Button getStartButton() {
 		return startButton;
