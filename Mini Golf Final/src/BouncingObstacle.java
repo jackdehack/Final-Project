@@ -26,14 +26,5 @@ public class BouncingObstacle extends CollisionObj {
         g.setColor(Color.BLUE);
         g.drawImage(bouncyPic, (int)(x - radius), (int)(y - radius), (int)(2 * radius), (int)(2 * radius), null);
     }
-
-    public boolean contains(Point p) {
-        double dx = p.x - x;
-        double dy = p.y - y;
-        return (dx * dx + dy * dy) <= (radius * radius);
-    }
-    
-    
-    
     
 }

@@ -118,11 +118,18 @@ public class Driver {
 				gamePanel.b.checkCollides(w);
 			}
 			
-			
-			for(BouncingObstacle bob: gamePanel.bouncys) {
-				gamePanel.b.checkCollides(bob);
+			if(gamePanel.bouncys != null) {
+				for(BouncingObstacle bob: gamePanel.bouncys) {
+					gamePanel.b.checkCollides(bob);
+				}
 			}
 			
+			
+			if(gamePanel.hills != null) {
+				for(Hill h: gamePanel.hills) {
+					h.checkApplyGravity(gamePanel.b);
+				}
+			}
 			
 			gamePanel.b.checkCollides(gamePanel.h);
 			// Apply friction
