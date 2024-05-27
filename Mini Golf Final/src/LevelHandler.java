@@ -20,8 +20,11 @@ public class LevelHandler extends JPanel {
 	static int[] holeSwings = new int[5];
 	int swings;
 	int par;
+	
+	String difficulty;
 
 	double maxSpeed = 6.5;
+
 
 	public static int calculateHoleStars(int swings, int par) {
 		if (swings <= par && swings > 0) {
@@ -39,12 +42,14 @@ public class LevelHandler extends JPanel {
 		return 0;
 	}
 
-	public LevelHandler(int width, int height, int level) {
+	public LevelHandler(int width, int height, int level, String difficulty) {
 		try {
 			bg = ImageIO.read(new File("Background.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		this.difficulty = difficulty;
 
 		this.width = width;
 		this.height = height;
@@ -298,10 +303,34 @@ public class LevelHandler extends JPanel {
 
 	private void drawProjectionLine(Graphics2D g) {
 		g.setColor(Color.white);
+		
+		if(this.difficulty.equals("Easy")) {
 		for (int i = 0; i < projectionPoints.size(); i++) {
 			Point p = projectionPoints.get(i);
 			g.fillOval(p.x, p.y, 4, 4);
 		}
+		}
+		
+		
+		
+		if(this.difficulty.equals("Medium")) {
+		for (int i = 0; i < Math.min(projectionPoints.size(), 4); i++) {
+			Point p = projectionPoints.get(i);
+			g.fillOval(p.x, p.y, 4, 4);
+		}
+		}
+		
+		
+		
+		
+		if(this.difficulty.equals("Hard")) {
+		for (int i = 0; i < Math.min(projectionPoints.size(), 1); i++) {
+			Point p = projectionPoints.get(i);
+			g.fillOval(p.x, p.y, 4, 4);
+		}
+		}
+		
+		
 	}
 
 }

@@ -16,6 +16,7 @@ public class Driver {
 	private static MenuPanel menuPanel;
 	private static boolean gameStarted = false;
 	static int level;
+	static String difficulty = "";
 
 	public static void main(String[] args) throws Exception {
 		frame = new JFrame();
@@ -43,6 +44,8 @@ public class Driver {
 				public void actionPerformed(ActionEvent e) {
 					// Handle difficulty selection
 					System.out.println("Difficulty selected: " + difficultyButton.getLabel());
+					difficulty = (difficultyButton.getLabel());
+					System.out.println(difficultyButton.getLabel());
 				}
 			});
 		}
@@ -52,10 +55,7 @@ public class Driver {
 				public void actionPerformed(ActionEvent e) {
 					// Handle level selection
 					System.out.println("Level selected: " + levelButton.getLabel());
-					level = Integer.parseInt((levelButton.getLabel().substring(6)));
-				
-							
-							
+					level = Integer.parseInt((levelButton.getLabel().substring(6)));			
 				}
 			});
 		}
@@ -65,7 +65,12 @@ public class Driver {
 		if(level == 0) {
 			level = 1;
 		}	
-		gamePanel = new LevelHandler(720, 1280, level);
+		
+		if(difficulty.equals("")) {
+			difficulty = "Easy";
+		}
+		
+		gamePanel = new LevelHandler(720, 1280, level, difficulty);
 		
 		shotsTaken = new Label("Swings: " + gamePanel.swings);
 		shotsTaken.setAlignment(Label.RIGHT);
@@ -131,8 +136,11 @@ public class Driver {
 			frame.repaint();
 			
 			if(gamePanel.b.isIn) {
+				if(LevelHandler.holeSwings[level-1] == 0 || gamePanel.swings < LevelHandler.holeSwings[level-1]) {
 				LevelHandler.holeSwings[level-1] = gamePanel.swings;
+				}
 				break;
+				
 			}
 		}
 		try {
