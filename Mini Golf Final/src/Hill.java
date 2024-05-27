@@ -84,9 +84,11 @@ public class Hill {
     }
 
     private void applyHillGravity(Ball ball, double gravityEffect) {
+    	if(ball.ballv.magnitude() > 0) {
         Vector hillDirection = new Vector(Math.cos(Math.toRadians(theta + 90)), Math.sin(Math.toRadians(theta + 90)));
         Vector gravityVector = hillDirection.multiply(gravityEffect);
         ball.ballv.add(gravityVector);
+    	}
     }
 
     public void drawHill(Graphics2D g) {
