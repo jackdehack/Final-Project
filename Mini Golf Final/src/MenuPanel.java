@@ -79,7 +79,7 @@ public class MenuPanel extends JPanel {
 	public void refreshData() {
 		remove(totalSwings);
 		totalSwings = new Label("Total swings: " + swings);
-		totalSwings.setBounds(310, 500, 100, 150);
+		totalSwings.setBounds(310, 500, 100, 20);
 		add(totalSwings);
 	}
 

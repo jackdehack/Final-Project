@@ -12,9 +12,8 @@ public class Vector {
        double magnitude = magnitude();
        return new Vector(x / magnitude, y / magnitude);
    }
-   public void add(Vector other) {
-       x += other.x;
-       y += other.y;
+   public Vector add(Vector other) {
+	   return new Vector(x + other.x, y + other.y);
    }
    public Vector multiply(double factor) {
        return new Vector(x * factor, y * factor);
