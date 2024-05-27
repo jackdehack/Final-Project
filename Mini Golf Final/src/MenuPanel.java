@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Label;
+import java.awt.image.BufferedImage;
 
 public class MenuPanel extends JPanel {
 	private Button startButton;
@@ -10,6 +11,8 @@ public class MenuPanel extends JPanel {
 	private Button[] levelButtons;
 	int swings;
 	Label totalSwings;
+	
+    BufferedImage[][] holeStars = new BufferedImage[5][3];
 	
 
 	public MenuPanel() {
@@ -47,6 +50,10 @@ public class MenuPanel extends JPanel {
 		totalSwings = new Label("Total swings: " + swings);
 		totalSwings.setBounds(310, 500, 100, 150);
 		add(totalSwings);
+		
+	}
+	
+	public void Scored() {
 		
 	}
 	
