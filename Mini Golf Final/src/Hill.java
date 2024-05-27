@@ -62,7 +62,13 @@ public class Hill {
 
     public void checkApplyGravity(Ball ball) {
         if (isInside(ball)) {
-            double gravityEffect = isUpHill ? -0.1 : 0.1;
+        	double gravityEffect;
+        	if(isUpHill) {
+        		gravityEffect = -.11;
+        	}else {
+        		gravityEffect = .11;
+        	}
+        	
             applyHillGravity(ball, gravityEffect);
         }
     }
@@ -84,11 +90,12 @@ public class Hill {
     }
 
     private void applyHillGravity(Ball ball, double gravityEffect) {
-    	if(ball.ballv.magnitude() > 0) {
         Vector hillDirection = new Vector(Math.cos(Math.toRadians(theta + 90)), Math.sin(Math.toRadians(theta + 90)));
         Vector gravityVector = hillDirection.multiply(gravityEffect);
+        System.out.println("first:" + ball.ballv.y);
         ball.ballv.add(gravityVector);
-    	}
+        System.out.println("after:" + ball.ballv.y);
+  
     }
 
     public void drawHill(Graphics2D g) {
