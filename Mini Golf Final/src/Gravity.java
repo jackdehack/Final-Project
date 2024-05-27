@@ -15,7 +15,7 @@ public class Gravity extends CollisionObj {
         this.rectHitBox = true;
     }
 
-    @Override
+    //@Override
     public void draw(Graphics g) {
         g.setColor(new Color(255, 165, 0, 128)); // Semi-transparent orange
         g.fillRect((int) x, (int) y, (int) width, (int) height);

@@ -258,9 +258,67 @@ public class LevelHandler extends JPanel {
     
     
     public void levelFour() {
-    	
+        par = 5;
+
+        // Starting position of the ball
+        b = new Ball(30, 670, new Vector(0, 0));
+        // Position of the hole
+        h = new Hole(400, 100);
+
+        // Define walls and obstacles to create a difficult path
+        walls = new ArrayList<>();
+
+        // Outer boundaries
+        walls.add(new Wall(50, 50, 100, 0));
+        walls.add(new Wall(344, 47, 120 , 0)); // Top boundary
+        
+          // Bottom boundary
+        
+        
+        walls.add(new Wall(50, 50, 200, 90)); //left corner
+        walls.add(new Wall(150, 50, 100, 90)); 
+        walls.add(new Wall(50, 247, 141, 45)); 
+        walls.add(new Wall(146, 148, 100, 0));  
+        walls.add(new Wall(243, 148, 142, -45)); 
+        walls.add(new Wall(464, 50, 100, 90));
+        
+        //rigjt box
+        walls.add(new Wall(460, 148, 100, 0));
+        walls.add(new Wall(560, 148, 100, 90));
+        walls.add(new Wall(460, 248, 100, 0));
+        walls.add(new Wall(464, 250, 230, 90));
+        
+        
+        walls.add(new Wall(10, 630, 80, 90));
+        walls.add(new Wall(180, 550, 160, 90));
+        walls.add(new Wall(7, 707, 170, 0));
+        walls.add(new Wall(7, 626, 85, 0));
+        walls.add(new Wall(92, 550, 80, 90));
+        walls.add(new Wall(90, 550, 80, -45));
+        walls.add(new Wall(150, 346, 150, 90));
+        walls.add(new Wall(180, 550, 100, 0));  
+        walls.add(new Wall(276, 550, 100, -45));
+        walls.add(new Wall(345, 480, 118, 0));  
+        
+        
+       
+
+        // Boundaries near the hole
+        
+        walls.add(new Wall(200, 280, 50, 50, 30)); 
+        walls.add(new Wall(260, 250, 100, 100, 0));
+        walls.add(new Wall(200, 380, 25, 25, 30)); 
+        walls.add(new Wall(175, 480, 40, 40, -10)); 
+        walls.add(new Wall(75, 80, 35, 25, 30)); 
+        walls.add(new Wall( 140, 650, 30, 30, 45)); 
+        walls.add(new Wall(410, 200, 45, 45 ,45));
+
+        // Path to the hole
+        
+
+        // Add more walls and obstacles as needed to match the map
     }
-    
+
     
     public void levelFive() {
     	
