@@ -17,6 +17,8 @@ public class LevelHandler extends JPanel {
 	Hole h;
 	Point initialClick;
 	ArrayList<Point> projectionPoints;
+	ArrayList<BouncingObstacle> bouncys;
+	
 	static int[] holeSwings = new int[5];
 	int swings;
 	int par;
@@ -199,12 +201,17 @@ public class LevelHandler extends JPanel {
 		b = new Ball(440, 650, new Vector(0, 0));
 		h = new Hole(320, 140);
 
+		
+		bouncys = new ArrayList<BouncingObstacle>();
+		BouncingObstacle bOb1 = new BouncingObstacle(300, 590);
+		bouncys.add(bOb1);
+		
+		
 		Wall wall1 = new Wall(380, 700, 130, 0);
 		Wall wall2 = new Wall(380, 600, 130, 0);
 		Wall wall3 = new Wall(510, 600, 104, 90);
 		Wall obstacle = new Wall(300, 220, 50, 50, 15);
 		Wall obstacle2 = new Wall(290, 420, 10, 60, -15);
-		Wall obstacle3 = new Wall(270, 620, 10, 65, -45);
 		Wall wall4 = new Wall(380, 700, 100, 90);
 		Wall wall5 = new Wall(380, 800, 120, 180);
 		Wall wall6 = new Wall(380, 100, 120, 180);
@@ -223,7 +230,6 @@ public class LevelHandler extends JPanel {
 		walls.add(wall8);
 		walls.add(obstacle);
 		walls.add(obstacle2);
-		walls.add(obstacle3);
 	}
 
 	public void levelFour() {
@@ -293,6 +299,11 @@ public class LevelHandler extends JPanel {
 		for (Wall w : walls) {
 			w.drawWall(g);
 		}
+		
+		for(BouncingObstacle b: bouncys) {
+			b.draw(g);
+		}
+		
 		h.draw(g);
 		b.draw(g);
 

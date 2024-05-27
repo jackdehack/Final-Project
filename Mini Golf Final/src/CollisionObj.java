@@ -76,26 +76,57 @@ public class CollisionObj {
             }
         }
         
-        
-        if(other.circleHitBox) {
-        	Vector dist = new Vector(x - other.x, y - other.y);
-        	double distance = Math.sqrt(dist.x * dist.x + dist.y * dist.y);
-        	
-        	if (distance < ((Ball) this).radius) {
-        		if( ((Ball) this).ballv.magnitude() <= 3) {
-        		
-        		((Ball) this).ballv = new Vector(0, 0);	
-        		((Ball) this).x = ((Hole)other).x;
-        		((Ball) this).y = ((Hole)other).y;
-        		((Ball)this).isIn = true;
-        		}
-        	}
-        	
-        	if(distance < ((Hole)other).flagRadius) {
-        		((Hole)other).animationTriggered = true;
-        	}
-        }
+		if (other.circleHitBox) {
+			if (other instanceof Hole) {
+				Vector dist = new Vector(x - other.x, y - other.y);
+				double distance = Math.sqrt(dist.x * dist.x + dist.y * dist.y);
 
-        return false;
-    }
+				if (distance < ((Ball) this).radius) {
+					if (((Ball) this).ballv.magnitude() <= 3) {
+
+						((Ball) this).ballv = new Vector(0, 0);
+						((Ball) this).x = ((Hole) other).x;
+						((Ball) this).y = ((Hole) other).y;
+						((Ball) this).isIn = true;
+						return true;
+					}
+				}
+
+				if (distance < ((Hole) other).flagRadius) {
+					((Hole) other).animationTriggered = true;
+				}
+			}
+			
+			
+			if(other instanceof BouncingObstacle) {
+				
+				double ballRadius = ((Ball) this).radius;
+	            BouncingObstacle obstacle = (BouncingObstacle) other;
+	            double obstacleRadius = obstacle.radius;
+
+	            double deltaX = this.x - obstacle.getX();
+	            double deltaY = this.y - obstacle.getY();
+	            double distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+	            if (distance < ballRadius + obstacleRadius) {
+	                Vector normal = new Vector(deltaX, deltaY).normalize();
+	                Vector velocity = ((Ball) this).ballv;
+	                Vector reflectedVelocity = velocity.subtract(normal.multiply(2 * velocity.dotProduct(normal)));
+	                reflectedVelocity = reflectedVelocity.multiply(2.0);
+	                ((Ball) this).ballv = reflectedVelocity;
+
+	                double overlap = ballRadius + obstacleRadius - distance;
+	                this.x += normal.x * overlap;
+	                this.y += normal.y * overlap;
+
+	                return true;
+	            }
+				
+			}
+			
+			
+		}
+
+		return false;
+	}
 }

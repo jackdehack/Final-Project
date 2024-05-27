@@ -117,6 +117,13 @@ public class Driver {
 			for (Wall w : gamePanel.walls) {
 				gamePanel.b.checkCollides(w);
 			}
+			
+			
+			for(BouncingObstacle bob: gamePanel.bouncys) {
+				gamePanel.b.checkCollides(bob);
+			}
+			
+			
 			gamePanel.b.checkCollides(gamePanel.h);
 			// Apply friction
 			gamePanel.b.ballv.x *= frictionFactor;

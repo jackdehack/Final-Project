@@ -17,23 +17,12 @@ public class MenuPanel extends JPanel {
 	Label totalSwings;
 	BufferedImage emptyStar;
 	BufferedImage fullStar;
-	BufferedImage MenuBG;
 	int[] levelScores = { 0, 0, 0, 0, 0 };
 
 	BufferedImage[][] holeStars = new BufferedImage[5][3];
 
 	public MenuPanel() {
 		setLayout(null);
-		
-		try {
-			MenuBG = ImageIO.read(new File("MenuBG.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
-		
-		
 		try {
 			emptyStar = ImageIO.read(new File("emptyStar.png"));
 			fullStar = ImageIO.read(new File("fullStar.png"));
@@ -59,19 +48,19 @@ public class MenuPanel extends JPanel {
 		difficultyButtons = new Button[3];
 		for (int i = 0; i < difficulties.length; i++) {
 			difficultyButtons[i] = new Button(difficulties[i]);
-			difficultyButtons[i].setBounds(220 + i * 100, 60, 80, 50);
+			difficultyButtons[i].setBounds(220 + i * 100, 30, 80, 50);
 			add(difficultyButtons[i]);
 		}
 		// Level buttons
 		levelButtons = new Button[5];
 		for (int i = 0; i < 5; i++) {
 			levelButtons[i] = new Button("Level " + (i + 1));
-			levelButtons[i].setBounds(120 + (i % 5) * 100, 1000, 80, 50);
+			levelButtons[i].setBounds(120 + (i % 5) * 100, 750 + (i / 5) * 60, 80, 50);
 			add(levelButtons[i]);
 		}
 
 		totalSwings = new Label("Total swings: " + swings);
-		totalSwings.setBounds(310, 500, 100, 20);
+		totalSwings.setBounds(310, 500, 100, 150);
 		add(totalSwings);
 	}
 
@@ -88,7 +77,6 @@ public class MenuPanel extends JPanel {
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(MenuBG, 0 , 0, 720, 1280, null);
 
 		for (int i = 0; i < levelButtons.length; i++) {
 			int swingsForLevel = LevelHandler.holeSwings[i];
@@ -98,7 +86,7 @@ public class MenuPanel extends JPanel {
 
 		for (int i = 0; i < levelButtons.length; i++) {
 			int x = 129 + (i % 5) * 100;
-			int y = 1075;
+			int y = 805 + (i / 5) * 60;
 			drawStars(g, x, y, levelScores[i]);
 		}
 	}
