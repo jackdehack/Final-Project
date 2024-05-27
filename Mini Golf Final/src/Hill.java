@@ -49,9 +49,9 @@ public class Hill {
     private void createPoints() {
         points = new Point2D[4];
         points[0] = new Point2D.Double(x, y);
-        points[1] = new Point2D.Double(x + length, y);
-        points[2] = new Point2D.Double(x + length, y + width);
-        points[3] = new Point2D.Double(x, y + width);
+        points[1] = new Point2D.Double(x + width, y);
+        points[2] = new Point2D.Double(x + width, y + length);
+        points[3] = new Point2D.Double(x, y + length);
 
         AffineTransform transform = new AffineTransform();
         transform.rotate(Math.toRadians(theta), x, y);
