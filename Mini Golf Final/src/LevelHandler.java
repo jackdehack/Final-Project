@@ -24,7 +24,7 @@ public class LevelHandler extends JPanel {
 	double maxSpeed = 6.5;
 
 	public static int calculateHoleStars(int swings, int par) {
-		if (swings <= par) {
+		if (swings <= par && swings > 0) {
 			return 3;
 		}
 
