@@ -150,7 +150,7 @@ public class LevelHandler extends JPanel {
 		
 		hills = new ArrayList<Hill>();
 		
-		Hill h = new Hill(230, 400, 221, 200, 0, true);
+		Hill h = new Hill(230, 400, 221, 180, 0, true);
 		
 		hills.add(h);
 		

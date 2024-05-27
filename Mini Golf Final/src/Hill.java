@@ -84,7 +84,7 @@ public class Hill {
     }
 
     private void applyHillGravity(Ball ball, double gravityEffect) {
-        Vector hillDirection = new Vector(Math.sin(Math.toRadians(theta)), Math.cos(Math.toRadians(theta)));
+        Vector hillDirection = new Vector(Math.cos(Math.toRadians(theta + 90)), Math.sin(Math.toRadians(theta + 90)));
         Vector gravityVector = hillDirection.multiply(gravityEffect);
         ball.ballv.add(gravityVector);
     }
