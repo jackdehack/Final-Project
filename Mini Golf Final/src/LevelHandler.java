@@ -239,11 +239,11 @@ public class LevelHandler extends JPanel {
 		
 
 		hills = new ArrayList<Hill>();
-		Hill h = new Hill(260, 390, 120, 80, 0, true);
+		Hill h = new Hill(260, 400, 120, 80, 0, true);
 		hills.add(h);
 		
 		bouncys = new ArrayList<BouncingObstacle>();
-		BouncingObstacle bOb1 = new BouncingObstacle(300, 590);
+		BouncingObstacle bOb1 = new BouncingObstacle(305, 590);
 		bouncys.add(bOb1);
 		
 		
