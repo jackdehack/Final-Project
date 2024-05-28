@@ -5,6 +5,8 @@ import java.awt.Button;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class Driver {
@@ -21,14 +23,16 @@ public class Driver {
 	public static void main(String[] args) throws Exception {
 		frame = new JFrame();
 		frame.setTitle("Minigolf");
-		frame.setSize(720, 1280);
+		frame.setSize(720, 847);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		// Initialize the menu panel
 		menuPanel = new MenuPanel();
 		frame.add(menuPanel);
 		// Add action listeners to the buttons
 		addMenuButtonListeners();
 		frame.setVisible(true);
+		
 	}
 
 	private static void addMenuButtonListeners() {
@@ -73,12 +77,12 @@ public class Driver {
 		gamePanel = new LevelHandler(720, 1280, level, difficulty);
 		
 		shotsTaken = new Label("Swings: " + gamePanel.swings);
-		shotsTaken.setAlignment(Label.RIGHT);
-		gamePanel.add(shotsTaken, BorderLayout.NORTH);
+		shotsTaken.setBounds(360, 0, 70, 20);
+		gamePanel.add(shotsTaken);
 		
 		par = new Label("Par: " + gamePanel.par);
-		par.setAlignment(Label.RIGHT);
-		gamePanel.add(par, BorderLayout.NORTH);
+		par.setBounds(290, 0, 40, 20);
+		gamePanel.add(par);
 		
 		
 		frame.remove(menuPanel);
@@ -87,6 +91,16 @@ public class Driver {
 		frame.revalidate();
 		frame.repaint();
 		gameStarted = true;
+		
+		gamePanel.backButton.addMouseListener(new MouseAdapter(){ //back button listener
+	        	@Override
+	        	public void mouseClicked(MouseEvent e) {
+	        		gamePanel.goBack = true;
+	        	}
+	        	
+  	      	});
+		
+		
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -153,28 +167,32 @@ public class Driver {
 				if(LevelHandler.holeSwings[level-1] == 0 || gamePanel.swings < LevelHandler.holeSwings[level-1]) {
 				LevelHandler.holeSwings[level-1] = gamePanel.swings;
 				}
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}	
 				break;
 				
 			}
-		}
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			if(gamePanel.goBack) {
+				break;
+			}
+			
 		}
 		
-		int sumSwings = 0;
-		for(int i = 0; i < LevelHandler.holeSwings.length; i++) {
-			sumSwings += LevelHandler.holeSwings[i];
-		}
-		menuPanel.swings = sumSwings;
-		
-		
-		frame.remove(gamePanel);
-		frame.add(menuPanel);
-		menuPanel.refreshData();
-		frame.repaint();
+
+			int sumSwings = 0;
+			for (int i = 0; i < LevelHandler.holeSwings.length; i++) {
+				sumSwings += LevelHandler.holeSwings[i];
+			}
+			menuPanel.swings = sumSwings;
+
+			frame.remove(gamePanel);
+			frame.add(menuPanel);
+			menuPanel.refreshData();
+			frame.repaint();
 	}
 	
 	
