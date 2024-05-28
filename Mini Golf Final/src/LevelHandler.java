@@ -22,6 +22,7 @@ public class LevelHandler extends JPanel {
 	ArrayList<Point> projectionPoints;
 	ArrayList<BouncingObstacle> bouncys;
 	ArrayList<Hill> hills;
+	ArrayList<Portal> portals;
 	JLabel backButton;
 	boolean goBack = false;
 	
@@ -178,8 +179,14 @@ public class LevelHandler extends JPanel {
 		
 		hills.add(h);
 		
-		
-
+		portals = new ArrayList<Portal>();
+		Portal bluePortal1 = new Portal(300, 400, true);
+		Portal bluePortal2 = new Portal(500, 200, true);
+		bluePortal1.setLinkedPortal(bluePortal2);
+        bluePortal2.setLinkedPortal(bluePortal1);
+        portals.add(bluePortal1);
+        portals.add(bluePortal2);
+        
 		Wall lWall = new Wall(230, 35, 760, 90);
 		Wall rWall = new Wall(455, 35, 760, 90);
 		Wall tWall = new Wall(230, 35, 221, 0);
@@ -425,6 +432,10 @@ public class LevelHandler extends JPanel {
 		for (Wall w : walls) {
 			w.drawWall(g);
 		}
+		
+		for (Portal p : portals) {
+            p.draw(g);
+        }
 		
 		h.draw(g);
 		b.draw(g);
