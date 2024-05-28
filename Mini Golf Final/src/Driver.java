@@ -21,8 +21,9 @@ public class Driver {
 	public static void main(String[] args) throws Exception {
 		frame = new JFrame();
 		frame.setTitle("Minigolf");
-		frame.setSize(720, 1280);
+		frame.setSize(720, 847);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		// Initialize the menu panel
 		menuPanel = new MenuPanel();
 		frame.add(menuPanel);
