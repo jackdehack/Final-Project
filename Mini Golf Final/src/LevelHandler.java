@@ -150,7 +150,7 @@ public class LevelHandler extends JPanel {
 		
 		hills = new ArrayList<Hill>();
 		
-		Hill h = new Hill(230, 400, 221, 180, 0, true);
+		Hill h = new Hill(230, 480, 221, 100, 0, false);
 		
 		hills.add(h);
 		
@@ -173,6 +173,8 @@ public class LevelHandler extends JPanel {
 
 		b = new Ball(240, 670, new Vector(0, 0));
 		h = new Hole(230, 90);
+		
+		
 
 		Wall wall1 = new Wall(190, 35, 200, 90);
 		Wall wall2 = new Wall(190, 35, 100, 0);
@@ -209,7 +211,12 @@ public class LevelHandler extends JPanel {
 
 		b = new Ball(440, 650, new Vector(0, 0));
 		h = new Hole(320, 140);
+		
+		
 
+		hills = new ArrayList<Hill>();
+		Hill h = new Hill(260, 390, 120, 80, 0, true);
+		hills.add(h);
 		
 		bouncys = new ArrayList<BouncingObstacle>();
 		BouncingObstacle bOb1 = new BouncingObstacle(300, 590);
@@ -243,29 +250,35 @@ public class LevelHandler extends JPanel {
 
 	public void levelFour() {
 		par = 5;
-
-		// Starting position of the ball
 		b = new Ball(30, 670, new Vector(0, 0));
-		// Position of the hole
 		h = new Hole(400, 100);
+		
+		
+		bouncys = new ArrayList<BouncingObstacle>();
+		BouncingObstacle bOb1 = new BouncingObstacle(200, 380);
+		BouncingObstacle bOb2 = new BouncingObstacle(410, 230);
+		bouncys.add(bOb1);
+		bouncys.add(bOb2);
+		
+		hills = new ArrayList<Hill>();
+		Hill h = new Hill(92, 550, 88, 80, 0, false);
+		hills.add(h);
 
-		// Define walls and obstacles to create a difficult path
+		
+		
 		walls = new ArrayList<>();
 
-		// Outer boundaries
 		walls.add(new Wall(50, 50, 100, 0));
-		walls.add(new Wall(344, 47, 120, 0)); // Top boundary
+		walls.add(new Wall(344, 47, 120, 0));
 
-		// Bottom boundary
 
-		walls.add(new Wall(50, 50, 200, 90)); // left corner
+		walls.add(new Wall(50, 50, 200, 90));
 		walls.add(new Wall(150, 50, 100, 90));
 		walls.add(new Wall(50, 247, 141, 45));
 		walls.add(new Wall(146, 148, 100, 0));
 		walls.add(new Wall(243, 148, 142, -45));
 		walls.add(new Wall(464, 50, 100, 90));
 
-		// rigjt box
 		walls.add(new Wall(460, 148, 100, 0));
 		walls.add(new Wall(560, 148, 100, 90));
 		walls.add(new Wall(460, 248, 100, 0));
@@ -282,19 +295,14 @@ public class LevelHandler extends JPanel {
 		walls.add(new Wall(276, 550, 100, -45));
 		walls.add(new Wall(345, 480, 118, 0));
 
-		// Boundaries near the hole
 
 		walls.add(new Wall(200, 280, 50, 50, 30));
 		walls.add(new Wall(260, 250, 100, 100, 0));
-		walls.add(new Wall(200, 380, 25, 25, 30));
 		walls.add(new Wall(175, 480, 40, 40, -10));
 		walls.add(new Wall(75, 80, 35, 25, 30));
 		walls.add(new Wall(140, 650, 30, 30, 45));
-		walls.add(new Wall(410, 200, 45, 45, 45));
+		
 
-		// Path to the hole
-
-		// Add more walls and obstacles as needed to match the map
 	}
 
 	public void levelFive() {
@@ -376,9 +384,7 @@ public class LevelHandler extends JPanel {
 		super.paintComponent(k); // Call the superclass method to ensure the panel is properly rendered
 		k.drawImage(bg, 0, 0, width, height, null);
 		Graphics2D g = (Graphics2D) k;
-		for (Wall w : walls) {
-			w.drawWall(g);
-		}
+		
 		
 		if(bouncys != null) {
 			for(BouncingObstacle b: bouncys) {
@@ -391,6 +397,10 @@ public class LevelHandler extends JPanel {
 			for(Hill h: hills) {
 				h.drawHill(g);
 			}
+		}
+		
+		for (Wall w : walls) {
+			w.drawWall(g);
 		}
 		
 		h.draw(g);
