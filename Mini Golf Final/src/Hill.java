@@ -49,9 +49,9 @@ public class Hill {
     private void createPoints() {
         points = new Point2D[4];
         points[0] = new Point2D.Double(x, y);
-        points[1] = new Point2D.Double(x + length, y);
-        points[2] = new Point2D.Double(x + length, y + width);
-        points[3] = new Point2D.Double(x, y + width);
+        points[1] = new Point2D.Double(x + width, y);
+        points[2] = new Point2D.Double(x + width, y + length);
+        points[3] = new Point2D.Double(x, y + length);
 
         AffineTransform transform = new AffineTransform();
         transform.rotate(Math.toRadians(theta), x, y);
@@ -64,9 +64,9 @@ public class Hill {
         if (isInside(ball)) {
         	double gravityEffect;
         	if(isUpHill) {
-        		gravityEffect = -.11;
-        	}else {
         		gravityEffect = .11;
+        	}else {
+        		gravityEffect = -.11;
         	}
         	
             applyHillGravity(ball, gravityEffect);
@@ -92,9 +92,7 @@ public class Hill {
     private void applyHillGravity(Ball ball, double gravityEffect) {
         Vector hillDirection = new Vector(Math.cos(Math.toRadians(theta + 90)), Math.sin(Math.toRadians(theta + 90)));
         Vector gravityVector = hillDirection.multiply(gravityEffect);
-        System.out.println("first:" + ball.ballv.y);
-        ball.ballv.add(gravityVector);
-        System.out.println("after:" + ball.ballv.y);
+        ball.ballv = ball.ballv.add(gravityVector);
   
     }
 

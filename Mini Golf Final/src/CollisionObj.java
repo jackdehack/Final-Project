@@ -112,7 +112,9 @@ public class CollisionObj {
 	                Vector normal = new Vector(deltaX, deltaY).normalize();
 	                Vector velocity = ((Ball) this).ballv;
 	                Vector reflectedVelocity = velocity.subtract(normal.multiply(2 * velocity.dotProduct(normal)));
-	                reflectedVelocity = reflectedVelocity.multiply(2.0);
+	                Vector constant = normal;
+	                constant = constant.multiply(3);
+	                reflectedVelocity = reflectedVelocity.add(constant);
 	                ((Ball) this).ballv = reflectedVelocity;
 
 	                double overlap = ballRadius + obstacleRadius - distance;
