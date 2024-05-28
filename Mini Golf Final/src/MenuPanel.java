@@ -4,26 +4,34 @@ import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Label;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class MenuPanel extends JPanel {
 	private Button startButton;
 	private Button[] difficultyButtons;
 	private Button[] levelButtons;
 	BufferedImage MenuBG;
+	Image superStar;
 	int swings;
 	Label totalSwings;
 	BufferedImage emptyStar;
 	BufferedImage fullStar;
 	int[] levelScores = { 0, 0, 0, 0, 0 };
+	
+
 
 	BufferedImage[][] holeStars = new BufferedImage[5][3];
 
 	public MenuPanel() {
 		setLayout(null);
+		superStar = Toolkit.getDefaultToolkit().createImage(new File("superStar.gif").getAbsolutePath());
+
 		
 		try {
 			MenuBG = ImageIO.read(new File("MenuBG.png"));
@@ -85,6 +93,8 @@ public class MenuPanel extends JPanel {
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
+		
 
 		g.drawImage(MenuBG, 0 , 0, 720, 1280, null);
 		
@@ -99,15 +109,24 @@ public class MenuPanel extends JPanel {
 			int y = 738;
 			drawStars(g, x, y, levelScores[i]);
 		}
+		
 	}
 
 	private void drawStars(Graphics g, int x, int y, int score) {
-
-		for (int i = 0; i < 3; i++) {
-			if (i < score) {
-				g.drawImage(fullStar, x + i * 20, y, 20, 20, null);
-			} else {
-				g.drawImage(emptyStar, x + i * 20, y, 20, 20, null);
+		if(score == 4) {
+			for (int i = 0; i < 3; i++) {
+			g.drawImage(superStar, x + i * 20, y, 20, 20, this);
+			}
+			
+		}
+		
+		if (score <= 3) {
+			for (int i = 0; i < 3; i++) {
+				if (i < score) {
+					g.drawImage(fullStar, x + i * 20, y, 20, 20, null);
+				} else {
+					g.drawImage(emptyStar, x + i * 20, y, 20, 20, null);
+				}
 			}
 		}
 	}

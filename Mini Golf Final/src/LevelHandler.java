@@ -6,7 +6,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class LevelHandler extends JPanel {
 	int width;
@@ -19,6 +22,8 @@ public class LevelHandler extends JPanel {
 	ArrayList<Point> projectionPoints;
 	ArrayList<BouncingObstacle> bouncys;
 	ArrayList<Hill> hills;
+	JLabel backButton;
+	boolean goBack = false;
 	
 	static int[] holeSwings = new int[5];
 	int swings;
@@ -30,7 +35,11 @@ public class LevelHandler extends JPanel {
 
 
 	public static int calculateHoleStars(int swings, int par) {
-		if (swings <= par && swings > 0) {
+		if(swings < par && swings > 0) {
+			return 4;
+		}
+		
+		if (swings == par) {
 			return 3;
 		}
 
@@ -45,12 +54,27 @@ public class LevelHandler extends JPanel {
 		return 0;
 	}
 
-	public LevelHandler(int width, int height, int level, String difficulty) {
+	public LevelHandler(int width, int height, int level, String difficulty) {		
+		
+		this.setBounds(getVisibleRect());
 		try {
 			bg = ImageIO.read(new File("Background.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		setLayout(null);
+		
+		
+		
+		
+		backButton = new JLabel("←");
+		backButton.setVerticalAlignment(SwingConstants.BOTTOM);
+		backButton.setHorizontalAlignment(SwingConstants.CENTER);
+		backButton.setForeground(new Color(255, 0, 0));
+		backButton.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		backButton.setBounds(0, 0, 50, 50);
+		this.add(backButton);
+		
 		
 		this.difficulty = difficulty;
 
