@@ -343,13 +343,12 @@ public class LevelHandler extends JPanel {
 		BouncingObstacle bOb1 = new BouncingObstacle(170, 670);
 		BouncingObstacle bOb2 = new BouncingObstacle(450, 720);
 		BouncingObstacle bOb3 = new BouncingObstacle(400, 550);
-		BouncingObstacle bOb4 = new BouncingObstacle(370, 450);
-		BouncingObstacle bOb5 = new BouncingObstacle(420, 200);
+		BouncingObstacle bOb4 = new BouncingObstacle(370, 350);
 		
 		
 		
 		
-		bouncys.add(bOb5);
+		
 		bouncys.add(bOb4);
 		bouncys.add(bOb3);
 		bouncys.add(bOb2);
@@ -389,11 +388,11 @@ public class LevelHandler extends JPanel {
 		walls.add(new Wall(150, 700, 100, 90));
 		walls.add(new Wall(50, 600, 280, 0));
 		walls.add(new Wall(150, 700, 250, 0));
-		walls.add(new Wall(47, 800, 100, 0));
+		walls.add(new Wall(47, 797, 102, 0));
 		
 		walls.add(new Wall(400, 700, 100, 90));
 		walls.add(new Wall(500, 700, 100, 90));
-		walls.add(new Wall(395, 800, 107, 0));
+		walls.add(new Wall(396, 800, 104, 0));
 		
 		
 		
