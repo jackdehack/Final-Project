@@ -64,9 +64,9 @@ public class Hill {
         if (isInside(ball)) {
         	double gravityEffect;
         	if(isUpHill) {
-        		gravityEffect = -.11;
-        	}else {
         		gravityEffect = .11;
+        	}else {
+        		gravityEffect = -.11;
         	}
         	
             applyHillGravity(ball, gravityEffect);
