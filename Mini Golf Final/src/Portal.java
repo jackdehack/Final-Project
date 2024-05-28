@@ -6,8 +6,8 @@ import javax.imageio.ImageIO;
 
 public class Portal extends CollisionObj {
 	double radius = 25;
-	private BufferedImage portalImage;
-	private Portal linkedPortal;
+	BufferedImage portalImage;
+	Portal linkedPortal;
 
 	public Portal(double x, double y, boolean isBlue) {
 		super(x, y);
@@ -16,14 +16,12 @@ public class Portal extends CollisionObj {
 			try {
 				portalImage = ImageIO.read(new File("bluePortal.png"));
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
 			try {
 				portalImage = ImageIO.read(new File("orangePortal.png"));
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

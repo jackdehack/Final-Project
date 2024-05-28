@@ -106,54 +106,54 @@ public class CollisionObj {
 				double ballRadius = ((Ball) this).radius;
 				BouncingObstacle obstacle = (BouncingObstacle) other;
 				double obstacleRadius = obstacle.radius;
+				Vector distance = new Vector(this.x - obstacle.x, this.y - obstacle.y);
+				
 
-				double deltaX = this.x - obstacle.getX();
-				double deltaY = this.y - obstacle.getY();
-				double distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-				if (distance < ballRadius + obstacleRadius) {
-					Vector normal = new Vector(deltaX, deltaY).normalize();
+				if (distance.magnitude() <= ballRadius + obstacleRadius) {
+					Vector normal = distance.normalize();
 					Vector velocity = ((Ball) this).ballv;
 					Vector reflectedVelocity = velocity.subtract(normal.multiply(2 * velocity.dotProduct(normal)));
 					Vector constant = normal;
 					constant = constant.multiply(3);
 					reflectedVelocity = reflectedVelocity.add(constant);
 					((Ball) this).ballv = reflectedVelocity;
-
-					double overlap = ballRadius + obstacleRadius - distance;
+					double overlap = ballRadius + obstacleRadius - distance.magnitude();
 					this.x += normal.x * overlap;
 					this.y += normal.y * overlap;
-
 					return true;
 				}
+				
+			}
 
 				if (other instanceof Portal) {
-					double ballRadius1 = ((Ball) this).radius;
-
 					Portal entryPortal = (Portal) other;
 					Portal exitPortal = entryPortal.getLinkedPortal();
 
-					double entryPortalRadius = entryPortal.radius;
+					Vector distance = new Vector(entryPortal.x - x, entryPortal.y - y);
 
-					double deltaX1 = this.x - entryPortal.getX();
-					double deltaY1 = this.y - entryPortal.getY();
-					double distance1 = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-					if (distance1 < ballRadius1 + entryPortalRadius) {
+					if (distance.magnitude() <= entryPortal.radius) {
 						if (exitPortal != null) {
-							this.x = exitPortal.getX();
-							this.y = exitPortal.getY();
-							((Ball) this).ballv = ((Ball) this).ballv; // maintain velocity
+							Vector displacement = ((Ball)this).ballv.normalize().multiply(2 * distance.magnitude());
+							
+							this.x = exitPortal.x + displacement.x;
+							this.y = exitPortal.y + displacement.y;
+							
+							
+							
 							return true;
 						}
 					}
 
 				}
 
-			}
 
 		}
 
 		return false;
 	}
+	
+	
+	
+	
+	
 }

@@ -138,6 +138,12 @@ public class Driver {
 				}
 			}
 			
+			if(gamePanel.portals != null) {
+				for(Portal p: gamePanel.portals) {
+					gamePanel.b.checkCollides(p);
+				}
+			}
+			
 			
 			if(gamePanel.hills != null) {
 				for(Hill h: gamePanel.hills) {

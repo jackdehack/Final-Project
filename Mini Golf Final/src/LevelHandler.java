@@ -181,7 +181,7 @@ public class LevelHandler extends JPanel {
 		
 		portals = new ArrayList<Portal>();
 		Portal bluePortal1 = new Portal(300, 400, true);
-		Portal bluePortal2 = new Portal(500, 200, true);
+		Portal bluePortal2 = new Portal(500, 200, false);
 		bluePortal1.setLinkedPortal(bluePortal2);
         bluePortal2.setLinkedPortal(bluePortal1);
         portals.add(bluePortal1);
@@ -429,13 +429,17 @@ public class LevelHandler extends JPanel {
 			}
 		}
 		
+		if(portals != null) {
+		for (Portal p : portals) {
+            p.draw(g);
+        }
+		}
+		
 		for (Wall w : walls) {
 			w.drawWall(g);
 		}
 		
-		for (Portal p : portals) {
-            p.draw(g);
-        }
+		
 		
 		h.draw(g);
 		b.draw(g);
