@@ -63,7 +63,7 @@ public class MenuPanel extends JPanel {
 		levelButtons = new Button[5];
 		for (int i = 0; i < 5; i++) {
 			levelButtons[i] = new Button("Level " + (i + 1));
-			levelButtons[i].setBounds(120 + (i % 5) * 100, 1000, 80, 50);
+			levelButtons[i].setBounds(120 + (i % 5) * 100, 800, 80, 30);
 			add(levelButtons[i]);
 		}
 
