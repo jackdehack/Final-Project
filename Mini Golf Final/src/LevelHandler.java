@@ -130,6 +130,7 @@ public class LevelHandler extends JPanel {
 				}
 			}
 		});
+		
 
 		addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -149,6 +150,8 @@ public class LevelHandler extends JPanel {
 				}
 			}
 		});
+		
+		
 	}
 
 	private Vector capSpeed(Vector velocity, double maxSpeed) {
@@ -188,8 +191,10 @@ public class LevelHandler extends JPanel {
 		hills.add(h);
 		
 		portals = new ArrayList<Portal>();
-		Portal bluePortal1 = new Portal(300, 400, true);
-		Portal bluePortal2 = new Portal(500, 200, false);
+		Portal bluePortal1 = new Portal(342, 766, true);
+		bluePortal1.invisible = true;
+		Portal bluePortal2 = new Portal(342, 35, true);
+		bluePortal2.invisible = true;
 		bluePortal1.setLinkedPortal(bluePortal2);
         bluePortal2.setLinkedPortal(bluePortal1);
         portals.add(bluePortal1);
@@ -409,11 +414,6 @@ public class LevelHandler extends JPanel {
 		walls.add(new Wall(500, 700, 100, 90));
 		walls.add(new Wall(396, 800, 104, 0));
 		
-		
-		
-		
-
-		// rigjt box
 		
 
 	}

@@ -8,6 +8,7 @@ public class Portal extends CollisionObj {
 	double radius = 25;
 	BufferedImage portalImage;
 	Portal linkedPortal;
+	boolean invisible = false;
 
 	public Portal(double x, double y, boolean isBlue) {
 		super(x, y);
@@ -36,6 +37,10 @@ public class Portal extends CollisionObj {
 	}
 
 	public void draw(Graphics2D g) {
-		g.drawImage(portalImage, (int) (x - radius), (int) (y - radius), (int) (2 * radius), (int) (2 * radius), null);
+		if (!invisible) {
+			g.drawImage(portalImage, (int) (x - radius), (int) (y - radius), (int) (2 * radius), (int) (2 * radius),
+					null);
+		}
 	}
+	
 }
