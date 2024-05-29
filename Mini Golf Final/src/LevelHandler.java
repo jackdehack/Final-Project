@@ -117,12 +117,16 @@ public class LevelHandler extends JPanel {
 					Point releasePoint = e.getPoint();
 					double dx = initialClick.x - releasePoint.x;
 					double dy = initialClick.y - releasePoint.y;
-					double velocityFactor = 0.1; // Adjust as needed for game balance
+					if(dx*dx + dy*dy > b.radius) {
+					double velocityFactor = 0.1; 
 					Vector newVelocity = new Vector(dx * velocityFactor, dy * velocityFactor);
 					b.ballv = capSpeed(newVelocity, maxSpeed);
 					initialClick = null;
 					projectionPoints.clear();
 					swings++;
+					}else {
+						projectionPoints.clear();
+					}
 				}
 			}
 		});
@@ -134,10 +138,14 @@ public class LevelHandler extends JPanel {
 					Point currentPoint = e.getPoint();
 					double dx = initialClick.x - currentPoint.x;
 					double dy = initialClick.y - currentPoint.y;
-					double velocityFactor = 0.1; // Same factor as in mouseReleased
+					if(dx*dx + dy*dy > b.radius) {
+					double velocityFactor = 0.1; 
 					Vector projectedVelocity = new Vector(dx * velocityFactor, dy * velocityFactor);
 					projectedVelocity = capSpeed(projectedVelocity, maxSpeed);
 					updateProjectionPoints(projectedVelocity);
+					}else {
+						projectionPoints.clear();
+					}
 				}
 			}
 		});
