@@ -34,7 +34,7 @@ public class LevelHandler extends JPanel {
 
 	double maxSpeed = 6.5;
 
-
+	// calculate menu stars based on swings and par
 	public static int calculateHoleStars(int swings, int par) {
 		if(swings < par && swings > 0) {
 			return 4;
@@ -67,7 +67,7 @@ public class LevelHandler extends JPanel {
 		
 		
 		
-		
+		// initialize back button
 		backButton = new JLabel("←");
 		backButton.setVerticalAlignment(SwingConstants.BOTTOM);
 		backButton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -82,6 +82,8 @@ public class LevelHandler extends JPanel {
 		this.width = width;
 		this.height = height;
 		projectionPoints = new ArrayList<>();
+		
+		// load the level based on level number
 
 		if (level == 1) {
 			levelOne();
@@ -153,7 +155,7 @@ public class LevelHandler extends JPanel {
 		
 		
 	}
-
+	// cap the speed of the ball
 	private Vector capSpeed(Vector velocity, double maxSpeed) {
 		double speed = velocity.magnitude();
 		if (speed > maxSpeed) {
@@ -162,7 +164,7 @@ public class LevelHandler extends JPanel {
 		}
 		return velocity;
 	}
-
+	// update projection points for the projected path of the ball
 	private void updateProjectionPoints(Vector velocity) {
 		projectionPoints.clear();
 		double timeStep = 4;
@@ -177,7 +179,7 @@ public class LevelHandler extends JPanel {
 			projectionPoints.add(new Point((int) x, (int) y));
 		}
 	}
-
+	// level-specific designs
 	public void levelOne() {
 		par = 2;
 
@@ -433,10 +435,10 @@ public class LevelHandler extends JPanel {
 	}
 
 	public void paintComponent(Graphics k) {
-		super.paintComponent(k); // Call the superclass method to ensure the panel is properly rendered
+		super.paintComponent(k); 
 		k.drawImage(bg, 0, 0, width, height, null);
 		Graphics2D g = (Graphics2D) k;
-		
+		//draw all obstacles and walls
 		
 		if(bouncys != null) {
 			for(BouncingObstacle b: bouncys) {
@@ -470,7 +472,7 @@ public class LevelHandler extends JPanel {
 			drawProjectionLine(g);
 		}
 	}
-
+	//draw projection line
 	private void drawProjectionLine(Graphics2D g) {
 		g.setColor(Color.white);
 		

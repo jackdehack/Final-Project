@@ -1,6 +1,6 @@
 public class Vector {
-   public double x; // x component of the vector
-   public double y; // y component of the vector
+   public double x; 
+   public double y; 
 
    // constructor that sets the x and y components
    public Vector(double x, double y) {
@@ -24,7 +24,7 @@ public class Vector {
        return new Vector(x + other.x, y + other.y); // add x and y components
    }
 
-   // method to multiply this vector by a scalar (number)
+   // method to multiply this vector by number
    public Vector multiply(double factor) {
        return new Vector(x * factor, y * factor); // multiply x and y by the factor
    }
@@ -39,7 +39,7 @@ public class Vector {
        return this.x * other.x + this.y * other.y; // multiply corresponding components and sum them up
    }
 
-   // method to rotate this vector by an angle theta (in radians)
+   // method to rotate this vector by an angle theta
    public Vector rotate(double theta) {
        double cosTheta = Math.cos(theta); // cosine of the angle
        double sinTheta = Math.sin(theta); // sine of the angle

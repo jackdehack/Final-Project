@@ -30,9 +30,10 @@ public class MenuPanel extends JPanel {
 
 	public MenuPanel() {
 		setLayout(null);
+		// load the superstar image
 		superStar = Toolkit.getDefaultToolkit().createImage(new File("superStar.gif").getAbsolutePath());
 
-		
+		// load the menu background image
 		try {
 			MenuBG = ImageIO.read(new File("MenuBG.png"));
 		} catch (IOException e) {
@@ -46,16 +47,6 @@ public class MenuPanel extends JPanel {
 			e.printStackTrace();
 		}
 
-		// Background
-//		JLabel background = new JLabel(new ImageIcon("background.png"));
-//		background.setBounds(0, 0, 720, 1280);
-//		add(background);
-//
-//		// Logo (optional)
-//		JLabel logo = new JLabel(new ImageIcon("logo.png"));
-//		logo.setBounds(210, 50, 300, 150);
-//		add(logo);
-		// Start button
 		startButton = new Button("Start");
 		startButton.setBounds(310, 440, 100, 50);
 		add(startButton);
@@ -78,10 +69,6 @@ public class MenuPanel extends JPanel {
 		totalSwings = new Label("Total swings: " + swings);
 		totalSwings.setBounds(310, 500, 100, 20);
 		add(totalSwings);
-	}
-
-	public void Scored() {
-
 	}
 
 	public void refreshData() {
@@ -111,7 +98,7 @@ public class MenuPanel extends JPanel {
 		}
 		
 	}
-
+	// drawing stars logic
 	private void drawStars(Graphics g, int x, int y, int score) {
 		if(score == 4) {
 			for (int i = 0; i < 3; i++) {
@@ -130,7 +117,7 @@ public class MenuPanel extends JPanel {
 			}
 		}
 	}
-
+	// get the par value for a given level
 	private int getParForLevel(int level) {
 		switch (level) {
 		case 1:
@@ -148,7 +135,6 @@ public class MenuPanel extends JPanel {
 		}
 	}
 
-	// Getter methods for the buttons
 	public Button getStartButton() {
 		return startButton;
 	}

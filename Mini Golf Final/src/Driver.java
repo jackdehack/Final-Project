@@ -9,39 +9,28 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Driver {
-    // declare variables for the frame and game panel
     private static JFrame frame;
     private static LevelHandler gamePanel;
     static Label par;
     static Label shotsTaken;
-
-    // declare variables for the menu panel and game state
     private static MenuPanel menuPanel;
     private static boolean gameStarted = false;
     static int level;
     static String difficulty = "";
 
     public static void main(String[] args) throws Exception {
-        // create and set up the main frame
         frame = new JFrame();
         frame.setTitle("Minigolf");
         frame.setSize(720, 847);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        
-        // initialize the menu panel and add it to the frame
         menuPanel = new MenuPanel();
         frame.add(menuPanel);
-        
-        // add action listeners to the menu buttons
         addMenuButtonListeners();
-        
-        // make the frame visible
         frame.setVisible(true);
     }
 
     private static void addMenuButtonListeners() {
-        // add action listener for the start button
         menuPanel.getStartButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -49,12 +38,12 @@ public class Driver {
             }
         });
         
-        // add action listeners for the difficulty buttons
+        // action listeners for difficulty buttons
         for (Button difficultyButton : menuPanel.getDifficultyButtons()) {
             difficultyButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    // handle difficulty selection
+                    // difficulty selection
                     System.out.println("Difficulty selected: " + difficultyButton.getLabel());
                     difficulty = (difficultyButton.getLabel());
                     System.out.println(difficultyButton.getLabel());
@@ -62,12 +51,12 @@ public class Driver {
             });
         }
         
-        // add action listeners for the level buttons
+        // action listeners for level buttons
         for (Button levelButton : menuPanel.getLevelButtons()) {
             levelButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    // handle level selection
+                    // level selection
                     System.out.println("Level selected: " + levelButton.getLabel());
                     level = Integer.parseInt((levelButton.getLabel().substring(6)));            
                 }
@@ -85,10 +74,9 @@ public class Driver {
             difficulty = "Easy";
         }
         
-        // create a new game panel with selected level and difficulty
         gamePanel = new LevelHandler(720, 1280, level, difficulty);
         
-        // create and set up labels for shots taken and par
+        // labels for shots taken and par
         shotsTaken = new Label("Swings: " + gamePanel.swings);
         shotsTaken.setBounds(360, 0, 70, 20);
         gamePanel.add(shotsTaken);
@@ -97,7 +85,7 @@ public class Driver {
         par.setBounds(290, 0, 40, 20);
         gamePanel.add(par);
         
-        // remove the menu panel and add the game panel to the frame
+        // remove menu panel, add game panel to the frame
         frame.remove(menuPanel);
         frame.add(gamePanel);
         frame.revalidate();
@@ -112,7 +100,7 @@ public class Driver {
             }
         });
         
-        // start the game loop in a new thread
+        // start game loop in new thread
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -122,13 +110,13 @@ public class Driver {
     }
 
     private static void gameLoop() {
-        // set the friction factor to slow down the ball
+        // set friction factor to slow down the ball
         double frictionFactor = 0.98;
         int counter = 0;
 
         // loop while the game is running
         while (gameStarted) {
-            // handle flag animation if triggered
+            // flag animation if triggered
             if(gamePanel.h.animationTriggered) {
                 counter++;
                 if(counter <= 30) {
@@ -186,17 +174,15 @@ public class Driver {
                 gamePanel.b.ballv = new Vector(0, 0);
             }
 
-            // sleep for a short time to control the game loop speed
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            // repaint the frame to update the game visuals
             frame.repaint();
             
-            // handle the case when the ball is in the hole
+            // case when the ball is in the hole
             if(gamePanel.b.isIn) {
                 if(LevelHandler.holeSwings[level - 1] == 0 || gamePanel.swings < LevelHandler.holeSwings[level - 1]) {
                     LevelHandler.holeSwings[level - 1] = gamePanel.swings;
@@ -209,7 +195,7 @@ public class Driver {
                 break;
             }
             
-            // handle the case when the back button is clicked
+            // case when the back button is clicked
             if(gamePanel.goBack) {
                 break;
             }

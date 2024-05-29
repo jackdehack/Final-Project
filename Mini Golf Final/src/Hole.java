@@ -7,7 +7,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Hole extends CollisionObj {
-    // declare variables for hole properties
     BufferedImage holePic;
     BufferedImage flagPic;
     int radius = 8;

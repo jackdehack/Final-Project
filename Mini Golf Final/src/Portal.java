@@ -5,37 +5,34 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Portal extends CollisionObj {
-    double radius = 25; // the size of the portal
-    BufferedImage portalImage; // image of the portal
-    Portal linkedPortal; // the other portal this one is connected to
-    boolean invisible = false; // if true, the portal will not be visible
+    double radius = 25; 
+    BufferedImage portalImage; 
+    Portal linkedPortal; 
+    boolean invisible = false; 
 
-    // this is the constructor for the portal class
-    // it sets the position and color of the portal
+    // constructor for the portal class
     public Portal(double x, double y, boolean isBlue) {
         super(x, y);
         this.circleHitBox = true; // make the portal have a circular hitbox
         if (isBlue) {
             try {
-                portalImage = ImageIO.read(new File("bluePortal.png")); // load blue portal image
+                portalImage = ImageIO.read(new File("bluePortal.png")); 
             } catch (IOException e) {
-                e.printStackTrace(); // print an error if the image can't be loaded
+                e.printStackTrace(); 
             }
         } else {
             try {
-                portalImage = ImageIO.read(new File("orangePortal.png")); // load orange portal image
+                portalImage = ImageIO.read(new File("orangePortal.png")); 
             } catch (IOException e) {
-                e.printStackTrace(); // print an error if the image can't be loaded
+                e.printStackTrace(); 
             }
         }
     }
 
-    // set the linked portal
     public void setLinkedPortal(Portal linkedPortal) {
         this.linkedPortal = linkedPortal;
     }
 
-    // get the linked portal
     public Portal getLinkedPortal() {
         return linkedPortal;
     }

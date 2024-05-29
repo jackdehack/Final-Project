@@ -10,7 +10,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Hill {
-    // declare variables for hill properties
     int x;
     int y;
     int width;
@@ -20,7 +19,6 @@ public class Hill {
     boolean isUpHill;
     BufferedImage hillPic;
 
-    // constructor to initialize the hill with given properties
     public Hill(int x, int y, int width, int length, double theta, boolean isUpHill) {
         this.x = x;
         this.y = y;
@@ -79,11 +77,11 @@ public class Hill {
         }
     }
 
-    // method to check if the ball is inside the hill's area
+    // check if the ball is inside the hill's area
     private boolean isInside(Ball ball) {
         Point2D ballPosition = new Point2D.Double(ball.x, ball.y);
 
-        // rotate the ball's position back to align with the hill's axis
+        // rotate ball's position back to align with the hill's axis
         AffineTransform transform = new AffineTransform();
         transform.rotate(-Math.toRadians(theta), x, y);
 
@@ -98,7 +96,7 @@ public class Hill {
                 transformedBall.getY() <= transformedBottomRight.getY());
     }
 
-    // method to apply gravity effect to the ball when on the hill
+    // apply gravity effect to the ball when on the hill
     private void applyHillGravity(Ball ball, double gravityEffect) {
         // calculate the direction of gravity on the hill
         Vector hillDirection = new Vector(Math.cos(Math.toRadians(theta + 90)), Math.sin(Math.toRadians(theta + 90)));
@@ -110,7 +108,6 @@ public class Hill {
 
     // method to draw the hill on the screen
     public void drawHill(Graphics2D g) {
-        // save the original transform
         AffineTransform og = g.getTransform();
         
         // rotate the graphics context to draw the hill at the correct angle
