@@ -373,11 +373,25 @@ public class LevelHandler extends JPanel {
 		bouncys.add(bOb3);
 		bouncys.add(bOb2);
 		bouncys.add(bOb1);
+		
+		
+		
+		portals = new ArrayList<Portal>();
+		Portal p1 = new Portal(530, 540, true);
+		Portal p2 = new Portal(70, 780, false);
+		p1.radius = 10;
+		p2.radius = 10;
+		p1.setLinkedPortal(p2);
+        p2.setLinkedPortal(p1);
+        portals.add(p1);
+        portals.add(p2);
+		
+		
 
-		// Define walls and obstacles to create a difficult path
+	
 		walls = new ArrayList<>();
 
-		// Outer boundaries
+	
 		walls.add(new Wall(270, 625, 40, 40,45));
 		
 		walls.add(new Wall(470,600, 40, 40,45));
@@ -385,7 +399,7 @@ public class LevelHandler extends JPanel {
 		
 		
 		
-		walls.add(new Wall(400, 50, 100, 0)); // Top boundary
+		walls.add(new Wall(400, 50, 100, 0)); 
 		walls.add(new Wall(50, 600, 200, 90)); 
 		walls.add(new Wall(500, 50, 100, 90));
 		walls.add(new Wall(400, 50, 100, 90));
